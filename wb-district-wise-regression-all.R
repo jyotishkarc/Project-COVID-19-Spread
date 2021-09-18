@@ -32,7 +32,7 @@ districts.cleaned <- apply(M, 2, function(vec){
 
 districts.cleaned <- as.data.frame(districts.cleaned)
 
-districts.cleaned <- districts.cleaned[1:30,]
+districts.cleaned <- districts.cleaned[151:180,]
 
 # districts.cleaned.centred <- districts.cleaned - 
 #    matrix(rep(colMeans(districts.cleaned), nrow(M)), nrow(M), ncol(M), byrow = TRUE)
