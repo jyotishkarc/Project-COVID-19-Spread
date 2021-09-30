@@ -41,8 +41,10 @@ districts.cleaned.v1 <- apply(M.v1, 2, function(vec){
    return(vec - temp)
 })
 
-X <- as.data.frame(districts.cleaned.v1)[201:260,]
-V <- cov(X)
+X <- as.data.frame(districts.cleaned.v1)[300:360,]
+
+V <- as.data.frame(cov(X))
+colnames(V) <- rownames(V) <- uni.dist
 
 #G <- matrix(0, nrow = 70, ncol = 23)
 
