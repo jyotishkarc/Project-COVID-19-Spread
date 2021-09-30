@@ -25,15 +25,26 @@ for (k in 1:23) {
    M[,k] <- c(rep(0, nrow(M)-length(H[[k]])), H[[k]])
 }
 
-reg.list <- list()
+# reg.list <- list()
+# 
+# districts.cleaned <- apply(M, 2, function(vec){
+#    temp <- c(0, vec[-length(vec)])
+#    return(vec - temp)
+# })
+# 
+# X <- districts.cleaned <- as.data.frame(districts.cleaned)[201:260,]
 
-districts.cleaned <- apply(M, 2, function(vec){
+M.v1 <- M[-c(1:13), ]
+
+districts.cleaned.v1 <- apply(M.v1, 2, function(vec){
    temp <- c(0, vec[-length(vec)])
    return(vec - temp)
 })
 
-X <- districts.cleaned <- as.data.frame(districts.cleaned)[200:260,]
+X <- as.data.frame(districts.cleaned.v1)[201:260,]
 V <- cov(X)
+
+#G <- matrix(0, nrow = 70, ncol = 23)
 
 W <- matrix(0, nrow = 23, ncol = 23)
 
