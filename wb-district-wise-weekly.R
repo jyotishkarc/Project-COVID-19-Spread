@@ -1,12 +1,11 @@
 library(dplyr)
 
-districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv")
+districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv") %>% as.data.frame()
 
-districts.df <- as.data.frame(districts.df)
+# districts.df <- as.data.frame(districts.df)
 districts.conf <- districts.df %>% filter(State == "West Bengal")
 
 uni.dist <- unique(districts.conf$District)
-
 uni <- districts.conf[districts.conf[,3] != "Unknown" ||
                          districts.conf[,3] != "Other State" , ]
 uni <- uni[,c(1,3,4)]
@@ -35,9 +34,10 @@ G <- matrix(0, nrow = 70, ncol = 23)
 
 for(i in 1:23){
    for(k in 1:70){
-      G[k,i] <- mean(districts.cleaned.v1[(7*k-6):(7*k),i])
+      G[k,i] <- sum(districts.cleaned.v1[(7*k-6):(7*k),i])/7
    }
 }
 
 G <- as.data.frame(G)
 colnames(G) <- uni.dist
+rownames(G) <- sapply(1:70, function(val){paste("Week",val, sep = " ")})
