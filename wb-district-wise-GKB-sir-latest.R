@@ -8,8 +8,8 @@ districts.conf <- districts.df %>% filter(State == "West Bengal")
 uni.dist <- unique(districts.conf$District)
 
 uni <- districts.conf[districts.conf[,3] != "Unknown" ||
-                         districts.conf[,3] != "Other State" , ]
-uni <- uni[,c(1,3,4)]
+                         districts.conf[,3] != "Other State" , ][,c(1,3,4)]
+# uni <- uni[,c(1,3,4)]
 
 uni.dist <- setdiff(uni.dist, c("Unknown", "Other State"))
 
@@ -36,19 +36,18 @@ for (k in 1:23) {
 
 M.v1 <- M[-c(1:13), ]
 
-districts.cleaned.v1 <- apply(M.v1, 2, function(vec){
+districts.cleaned <- apply(M.v1, 2, function(vec){
    temp <- c(0, vec[-length(vec)])
    return(vec - temp)
 })
 
-X <- as.data.frame(districts.cleaned.v1)[201:260,]
-
+X <- as.data.frame(districts.cleaned)[c(201:260),]
 V <- as.data.frame(cov(X))
-colnames(V) <- rownames(V) <- uni.dist
+pref <- W <- matrix(0, nrow = 23, ncol = 23) %>% as.data.frame()
 
-#G <- matrix(0, nrow = 70, ncol = 23)
+colnames(X) <- colnames(V) <- rownames(V) <- 
+   colnames(pref) <- rownames(pref) <- colnames(W) <- rownames(W) <- uni.dist
 
-pref <- matrix(0, nrow = 23, ncol = 23)
 
 for (i in 1:ncol(X)) {
    for (j in 1:ncol(X)) {
@@ -71,40 +70,16 @@ for (i in 1:ncol(X)) {
 
 reg.list <- list()
 
-# for (k in 1 : ncol(districts.cleaned)) {
-#    temp.M <- districts.cleaned[ ,c(k, which(pref[k,] == 1))] %>% as.data.frame()
-#    
-#    names(temp.M)[1] <- "current.dep.var"
-#    reg.list[[k]] <- lm(current.dep.var ~ . , data = temp.M)
-#    
-#    rm(temp.M)
-# }
-# 
-# W <- list()
-# 
-# for (k in 1 : ncol(M)) {
-#    Q <- reg.list[[k]] %>% summary()
-#    H <- Q$coefficients[,4][-1]
-#    G <- rep(0, 23)
-#    G[which(H < 0.05)] <- H[which(H < 0.05)]
-#    temp <- as.numeric(reg.list[[k]]$coefficients)[-1]
-#    
-#    if (k == 1) {W[[k]] <- c(0, temp)}
-#    if (k == ncol(M)) {W[[k]] <- c(temp, 0)}
-#    else W[[k]] <- c(temp[1:(k-1)],0,temp[k:(ncol(M)-1)])
-#    
-#    W[[k]][which(G==0)] <- 0
-# }
 
-W <- data.frame(NA, 23, 23)
-
-for (k in 1 : ncol(districts.cleaned)) {
+for (k in 1 : ncol(X)) {
+   cat("\n")
    print(k)
+   cat("\n")
    
-   temp.M <- districts.cleaned[ ,c(k, which(pref[k,] == 1))] %>% as.data.frame()
-   # temp.M <- districts.cleaned.centred
-   # print(names(temp.M)[k])
-   names(temp.M)[k] <- "current.dep.var"
+   temp.M <- X[ ,c(k, which(pref[k,] == 1))] %>% as.data.frame()
+   N <- ncol(temp.M)
+   
+   names(temp.M)[1] <- "current.dep.var"
    reg.list[[k]] <- lm(current.dep.var ~ . , data = temp.M)
    Q <- reg.list[[k]] %>% summary()
    p <- Q$coefficients[,4][-1]
@@ -117,18 +92,23 @@ for (k in 1 : ncol(districts.cleaned)) {
       print(reg.list[[k]] %>% summary())
    }
    else{
-      while (max(p)>=0.05 & y < 21) {
+      while (max(p) >= 0.05 & y < (N - 2)) {
          y <- y+1
-         s <- rownames(Q$coefficients)[1+which.max(p)]
+         s <- rownames(Q$coefficients)[1+which.max(p)] %>% gsub("`","",.)
          temp.M <- temp.M[,-which(names(temp.M) %in% s)]
+         print(dim(temp.M))
          reg.list[[k]] <- lm(current.dep.var ~ . , data = temp.M)
          Q <- reg.list[[k]] %>% summary()
          p <- Q$coefficients[,4][-1]
+         
+         print(max(p))
+         
          if(max(p) < 0.05){
             temp <- as.numeric(reg.list[[k]]$coefficients)[-1]
             s <- rownames(Q$coefficients)[-1]
             W[k,s] <- Q$coefficients[,1][-1]
             print(reg.list[[k]] %>% summary())
+            break
          }
       }
    }
@@ -139,6 +119,17 @@ for (k in 1 : ncol(districts.cleaned)) {
 # colnames(W) <- rownames(W) <- uni.dist
 
 
+W[,19] <- W[,24]
+W[,11] <- W[,25]
+W[,13] <- W[,26]
+W[,10] <- W[,27]
+W[,23] <- W[,28]
+W[,9] <- W[,29]
+W[,16] <- W[,30]
+W[,12] <- W[,31]
+W[,18] <- W[,32]
+W <- W[,c(1:23)]
+W[is.na(W)] <- 0
 
 
 
