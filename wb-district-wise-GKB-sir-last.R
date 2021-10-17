@@ -109,6 +109,8 @@ reg.matrix <- function(start.day, end.day){
       }
    }
    
+   View(W)
+   
    W[,19] <- W[,24]
    W[,11] <- W[,25]
    W[,13] <- W[,26]
