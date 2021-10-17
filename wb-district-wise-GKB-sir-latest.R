@@ -132,6 +132,7 @@ W <- W[,c(1:23)]
 W[is.na(W)] <- 0
 
 
+writexl::write_xlsx(cbind(" " = uni.dist, W), path = "C:\\Users\\JYOTISHKA\\Desktop\\W-201-260.xlsx")
 
 
 
