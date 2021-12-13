@@ -1,4 +1,5 @@
 library(dplyr)
+#stepwise regression
 districts.df <-read.csv(file.choose(),header = TRUE)
 districts.df <- as.data.frame(districts.df)
 districts.conf <- districts.df %>% filter(State == "West Bengal")
