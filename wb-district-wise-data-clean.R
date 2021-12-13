@@ -11,7 +11,6 @@ uni <- districts.conf[districts.conf[,3] != "Unknown" ||
 uni.dist <- districts.conf$District %>%
                unique() %>% 
                setdiff(c("Unknown", "Other.State"))
-               # gsub(" ", ".", .)
 
 X <- list()
 for (i in 1:length(uni.dist)) {
