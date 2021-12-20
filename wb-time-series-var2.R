@@ -1,7 +1,9 @@
 
 library(dplyr)
 library("vars")
-n=7
+
+n <- 7
+
 districts.conf <- districts.df %>% filter(State == "West Bengal")
 
 districts.conf[,3] <- districts.conf[,3] %>% gsub(" ", ".", .)
