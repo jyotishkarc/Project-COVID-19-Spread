@@ -64,7 +64,9 @@ colnames(G) <- uni.dist
 rownames(G) <- sapply(1:floor(J/n), function(val){paste0("w",val)})
 
 x <- VAR(G, p=2, type="both")
-summary(x)
+S <- x %>% summary()
+
+S$varresult[[23]]$coefficients
 
 
 
