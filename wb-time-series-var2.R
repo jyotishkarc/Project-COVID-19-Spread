@@ -8,7 +8,7 @@ n <- 7
 if(TRUE){
    
    path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
-   path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
+   # path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
    
    districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
    districts.conf <- districts.df %>% filter(State == "West Bengal")
@@ -63,7 +63,7 @@ G <- G %>% as.data.frame()
 colnames(G) <- uni.dist
 rownames(G) <- sapply(1:floor(J/n), function(val){paste0("w",val)})
 
-x <- VAR(G, p=2, type="both")
+x <- VAR(G, p = 2, type = "both")
 S <- x %>% summary()
 
 S$varresult[[23]]$coefficients
