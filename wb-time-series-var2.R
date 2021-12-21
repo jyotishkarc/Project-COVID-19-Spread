@@ -8,6 +8,7 @@ n <- 7
 if(TRUE){
    
    path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
+   path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
    
    districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
    districts.conf <- districts.df %>% filter(State == "West Bengal")

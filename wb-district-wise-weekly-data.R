@@ -1,6 +1,6 @@
 library(dplyr)
 
-districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv") %>% as.data.frame()
+#districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv") %>% as.data.frame()
 
 # districts.df <- as.data.frame(districts.df)
 districts.conf <- districts.df %>% filter(State == "West Bengal")
