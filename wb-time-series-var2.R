@@ -25,6 +25,7 @@ if(TRUE){
    #    setdiff(c("Unknown", "Other.State"))
    
    uni.dist <- arranged.districts
+   L <- uni.dist %>% length()
    
    X <- list()
    for (i in 1:length(uni.dist)) {
@@ -32,9 +33,9 @@ if(TRUE){
    }
    
    J <- districts.conf[,1] %>% unique() %>% length()
-   M <- matrix(0, nrow = J, ncol = 23)
+   M <- matrix(0, nrow = J, ncol = L)
    
-   for (k in 1:23) {
+   for (k in 1:L) {
       M[,k] <- c(rep(0, nrow(M)-length(X[[k]])), X[[k]])
    }
    
@@ -50,9 +51,9 @@ if(TRUE){
 }
 
 
-G <- matrix(0, nrow = floor(J/n), ncol = 23)
+G <- matrix(0, nrow = floor(J/n), ncol = L)
 
-for(i in 1:23){
+for(i in 1:L){
    for(k in 1:floor(J/n)){
       # G[k,i] <- sum(districts.cleaned[(n*k-n+1):(n*k),i])/n
       G[k,i] <- sum(districts.cleaned[(n*k-n+1):(n*k),i])
@@ -63,12 +64,24 @@ G <- G %>% as.data.frame()
 colnames(G) <- uni.dist
 rownames(G) <- sapply(1:floor(J/n), function(val){paste0("w",val)})
 
-x <- VAR(G, p = 2, type = "both")
+x <- VAR(G, p = 2, type = "none")
 S <- x %>% summary()
 
-S$varresult[[23]]$coefficients
+A_1 <- A_2 <- matrix(0, nrow = L, ncol = L)
+ptol <- 0.1
 
+for(i in 1:L){
+   temp1 <- S$varresult[[i]]$coefficients[1:L , ]
+   temp2 <- S$varresult[[i]]$coefficients[(L+1):(2*L) , ]
+   
+   mark1 <- which(temp1[,4] < ptol) %>% as.numeric()
+   mark2 <- which(temp2[,4] < ptol) %>% as.numeric()
+   
+   A_1[i , mark1] <- temp1[mark1 , 1]
+   A_2[i , mark2] <- temp2[mark2 , 1]
+}
 
+colnames(A_1) <- colnames(A_2) <- rownames(A_1) <- rownames(A_2) <- uni.dist
 
 
 
