@@ -1,8 +1,8 @@
 library(glmnet)
 library(dplyr)
 library(tidyr)
-y=districts.cleaned[,1]
-x=districts.cleaned[,-1]
+y=model.matrix(Alipurduar~., districts.cleaned)[,1]
+x=model.matrix(Alipurduar~., districts.cleaned)[,-1]
 grid = 10^seq(10, -2, length = 100)
 ridge_mod = glmnet(x, y, alpha = 0, lambda = grid)
 dim(coef(ridge_mod))
@@ -35,3 +35,19 @@ plot(cv.out)
 
 out = glmnet(x, y, alpha = 0) # Fit ridge regression model on full dataset
 predict(out, type = "coefficients", s = bestlam)[1:20,] # Display coefficients using lambda chosen by CV
+
+# lasso_mod = glmnet(x_train, 
+#                    y_train, 
+#                    alpha = 1, 
+#                    lambda = grid) # Fit lasso model on training data
+# 
+# plot(lasso_mod)   
+# set.seed(1)
+# cv.out = cv.glmnet(x_train, y_train, alpha = 1) # Fit lasso model on training data
+# plot(cv.out) # Draw plot of training MSE as a function of lambda
+# bestlam = cv.out$lambda.min # Select lamda that minimizes training MSE
+# lasso_pred = predict(lasso_mod, s = bestlam, newx = x_test) # Use best lambda to predict test data
+# mean((lasso_pred - y_test)^2) 
+# out = glmnet(x, y, alpha = 1, lambda = grid) # Fit lasso model on full dataset
+# lasso_coef = predict(out, type = "coefficients", s = bestlam)[1:20,] # Display coefficients using lambda chosen by CV
+# lasso_coef
