@@ -74,7 +74,7 @@ f <- function(p){
     return(c(Z1,Z2))
     
 }
-x=c(rep(0.01,d^2-d),rep(0.1,2*d))
+x=c(rep(0.01,d^2-d),rep(10,2*d))
 
 nleqslv(x, f, control=list(btol=.01),jacobian=TRUE,method="Newton")
 
