@@ -2,9 +2,12 @@ library(nleqslv)
 library(magrittr)
 library(dplyr)
 
-districts.df <- read.csv(file.choose(),header = TRUE)
+# districts.df <- read.csv(file.choose(),header = TRUE)
+# districts.df <- as.data.frame(districts.df)
 
-districts.df <- as.data.frame(districts.df)
+path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
+districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
+
 districts.conf <- districts.df %>% filter(State == "West Bengal")
 
 uni.dist <- unique(districts.conf$District)
@@ -68,15 +71,18 @@ f <- function(p){
    
     Z1 <- upper.Y1 %>% t() %>% as.numeric()
     Z1 <- Z1[is.na(Z1) == FALSE]
+    
     Z2 <- upper.Y2 %>% t() %>% as.numeric()
     Z2 <- Z2[is.na(Z2) == FALSE]
    
     return(c(Z1,Z2))
     
 }
-x=c(rep(0.01,d^2-d),rep(10,2*d))
 
-nleqslv(x, f, control=list(btol=.01),jacobian=TRUE,method="Newton")
+d <- 23
+x <- c(rep(0.01,d^2-d),rep(10,2*d))
+
+res <- nleqslv(x, f, control = list(btol=.01), jacobian = TRUE, method="Newton")
 
 
 
