@@ -4,6 +4,7 @@ library(vars)
 library(readxl)
 
 n <- 7
+
 ts.mat <-function(n){
    if(TRUE){
       path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
