@@ -75,9 +75,10 @@ f <- function(p){
     
 }
 d=23
-x=c(rep(0.01,d^2-d),rep(10,2*d))
+ x=c(rep(0.01,d^2-d),rep(10,2*d))
+x=0.01*c(rnorm(d^2-d),rnorm(2*d))
 
-res <- nleqslv(x, f, control=list(btol=.01),jacobian=TRUE,method="Newton")
+res <- nleqslv(x, f, control=list(btol=.01), jacobian=TRUE)
 
 
 
