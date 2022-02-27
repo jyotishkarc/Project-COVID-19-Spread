@@ -3,12 +3,11 @@ library(dplyr)
 library(vars)
 library(readxl)
 
-n <- 7
+# n <- 7
 
 ts.mat <-function(n){
    if(TRUE){
       path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
-      path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
       
       districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
       districts.conf <- districts.df %>% filter(State == "West Bengal")
@@ -18,7 +17,7 @@ ts.mat <-function(n){
       arranged.districts <- colnames(arranged.districts.data)
       
       uni <- districts.conf[districts.conf[,3] != "Unknown" ||
-                            districts.conf[,3] != "Other.State" , ][,c(1,3,4)]
+                               districts.conf[,3] != "Other.State" , ][,c(1,3,4)]
       
       # uni.dist <- districts.conf$District %>%
       #    unique() %>%
@@ -81,24 +80,34 @@ ts.mat <-function(n){
    }
    
    colnames(A_1) <- colnames(A_2) <- rownames(A_1) <- rownames(A_2) <- uni.dist
-   N <- as.data.frame(rep(NA,23))
-   return(cbind(A_1,N,A_2))
+   return(list("B_1" = A_1, "B_2" = A_2, "G" = G))
 }
 
-matrix.list <- matrix.list.all <- list()
-current.sheet.name <- c()
+temp <- ts.mat(1)
 
-for (k in 1:7) {
-   matrix.list[[k]] <- as.data.frame(ts.mat(k))
-   current.sheet.name[k] <- paste0(k," - ")
-   print(current.sheet.name[k])
-   matrix.list.all <- append(matrix.list.all,
-                                 list(matrix.list[[k]]))
-}
+G <- as.matrix(temp$G)
+residual.1 <- G[3:300,] - G[2:299,] %*% temp$B_1 
+                              - G[1:298,] %*% temp$B_2
+residual.2 <- G[301:nrow(G),] - G[300:(nrow(G)-1),] %*% temp$B_1 
+                              - G[299:(nrow(G)-2),] %*% temp$B_2
 
-names(matrix.list.all) <- current.sheet.name
+RVY1.inv <- solve(cov(residual.1))
+RVY2.inv <- solve(cov(residual.2))
 
-writexl::write_xlsx(matrix.list.all, path ="C:\\Users\\JYOTISHKA\\Desktop\\matrix.list.all.xlsx")
 
-#writexl::write_xlsx(matrix.list.all, path ="/Users/aytijhyasaha/Desktop/matrix.list.all.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
