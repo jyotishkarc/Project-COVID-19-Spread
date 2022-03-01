@@ -1,0 +1,71 @@
+---
+title: "Work Work"
+author: "Jyotishka & his dear Aytijhya"
+output:
+  pdf_document:
+    keep_tex: true
+  html_document:
+    df_print: paged
+fontsize: 12pt
+geometry: margin=0.9in
+mainfont: cochineal
+fontfamily: libertine
+sansfont: Linux Biolinum O
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(kableExtra)
+library(tinytex)
+
+
+```
+
+\definecolor{mypink1}{rgb}{0.95, 0.91, 0.85}
+\definecolor{Prussian}{rgb}{0,0.2,0.4}
+\definecolor{DeepBlue}{HTML}{3E0080}
+
+\section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
+\subsection{Traditional method}
+
+
+
+\subsection{Rigobon's Method of Partitioning}
+
+
+
+
+\subsection{GKB Method}
+
+\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $  Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t $}}}
+
+We estimate $ B_1$ , $B_2$ using Vector Auto-regressive(2) model.
+
+\section{\textbf{\textcolor{DeepBlue}{Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
+Method of estimation of W is discussed in section 1.(\textcolor{red}{Why this W and the W of the model in section 1 should be same?})\\
+For i = 1,2; 
+$A_i = (I-W)B_i$
+
+\begin{align*}
+    \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\
+    &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,\eta) + \beta\cdot\text{cov}(p,\varepsilon)\\
+    &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,q - \beta p) + \beta\cdot\text{cov}(p,p - \alpha q)\\
+    &= \alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p) - \alpha\beta\cdot\text{cov}(p,q)
+\end{align*}
+
+Therefore, we have:
+$$~\text{cov}(p,q) = \dfrac{1}{1+\alpha\beta}\Big[\alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p)\Big] $$
+
+Also,we calculated 
+$$var(q) = \frac{\beta^2 \sigma^2_{\eta,s} + \sigma^2_{\epsilon,s}}{(1-\alpha \beta)^2} $$
+$$var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \beta)^2}$$
+
+For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns :
+
+$\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$
+
+
+
+

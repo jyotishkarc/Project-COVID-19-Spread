@@ -1,0 +1,131 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  12pt,
+]{article}
+\title{Work Work}
+\author{Jyotishka \& his dear Aytijhya}
+\date{}
+
+\usepackage{amsmath,amssymb}
+\usepackage[]{libertine}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmainfont[]{cochineal}
+  \setsansfont[]{Linux Biolinum O}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Work Work},
+  pdfauthor={Jyotishka \& his dear Aytijhya},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=0.9in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\definecolor{mypink1}{rgb}{0.95, 0.91, 0.85}
+\definecolor{Prussian}{rgb}{0,0.2,0.4}
+\definecolor{DeepBlue}{HTML}{3E0080}
+
+\section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
+\subsection{Traditional method}
+
+\subsection{Rigobon's Method of Partitioning}
+
+\subsection{GKB Method}
+
+\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $  Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t $}}}
+
+We estimate \$ B\_1\$ , \(B_2\) using Vector Auto-regressive(2) model.
+
+\section{\textbf{\textcolor{DeepBlue}{Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
+
+Method of estimation of W is discussed in section
+1.(\textcolor{red}{Why this W and the W of the model in section 1 should be same?})\textbackslash{}
+For i = 1,2; \(A_i = (I-W)B_i\)
+
+\begin{align*}
+    \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\
+    &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,\eta) + \beta\cdot\text{cov}(p,\varepsilon)\\
+    &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,q - \beta p) + \beta\cdot\text{cov}(p,p - \alpha q)\\
+    &= \alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p) - \alpha\beta\cdot\text{cov}(p,q)
+\end{align*}
+
+Therefore, we have:
+\[~\text{cov}(p,q) = \dfrac{1}{1+\alpha\beta}\Big[\alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p)\Big] \]
+
+Also,we calculated
+\[var(q) = \frac{\beta^2 \sigma^2_{\eta,s} + \sigma^2_{\epsilon,s}}{(1-\alpha \beta)^2} \]
+\[var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \beta)^2}\]
+
+For \(s=1,2\); we have 6 equations using the sample estimates of the
+variances and covariances over the two regimes and there are 6 unknowns
+:
+
+\(\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}\)
+
+\end{document}
