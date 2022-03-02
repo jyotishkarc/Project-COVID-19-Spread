@@ -91,6 +91,43 @@
 \definecolor{Prussian}{rgb}{0,0.2,0.4}
 \definecolor{DeepBlue}{HTML}{3E0080}
 
+\hypertarget{hello}{%
+\section{HELLO}\label{hello}}
+
+Let the vector \(X = (X_1, X_2, . . . , X_k)\) and Cov(X) = V which is
+partitioned as
+
+\[\begin{bmatrix}
+V_{11} & V_{12}\\
+V_{21} & V_{22}
+\end{bmatrix}\]
+
+where \(V_{11} = Cov(Y_1), V_{22} = Cov(Y_2)\) and
+\(V_{12} = V_{21} = Cov(Y_1, Y_2)\), with \(Y_1 = (X_1, X_2)\),
+\(Y_2 = (X_3, . . . , X_k)\). \textbackslash{} Then
+\(V_{11.2} = V_{11} - V_{12}V_{22}^{-1}V_{21}\).\textbackslash{}
+Consider the individual elements of \[V_{11.2} =
+\begin{bmatrix}
+v_{11.2} & v_{12.2} \\
+v_{21.2} & v_{22.2}
+\end{bmatrix}\]
+
+We would like to compare, between \(v_{12.2}/v_{11.2}\) and
+\(v_{12.2}/v_{22.2}\) and keep whichever is bigger among them and
+discard the other one. This would give regression coefficient between
+each pair of random variables eliminating the effect of the other
+variables. This way one can select the coefficients W matrix which would
+be non-zero, in the model
+
+\[Y = W Y + \epsilon\]
+
+and would be a way to see directional dependence in the fixed time
+period. Then we would move the window. This would give a way to do path
+analysis.
+
+This process can be compared with other ones, such backward substitution
+or forward selection, eliminating the multi colinearity effect.
+
 \section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
 \subsection{Traditional method}
 
