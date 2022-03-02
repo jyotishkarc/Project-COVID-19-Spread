@@ -70,7 +70,7 @@ This process can be compared with other ones, such backward substitution or forw
 
 \subsection{GKB Method}
 
-\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $  Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t $}}}
+\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
 We estimate $ B_1$ , $B_2$ using Vector Auto-regressive(2) model.
 
@@ -96,6 +96,29 @@ $$var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \
 For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns :
 
 $\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$
+
+
+
+
+\section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$, and $V_2$}}}
+
+We have been following the following spatio-temporal model: $$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where $\varepsilon_t$ is the unknown error vector at time $t$. Note that in this model, $W$, $A_1$, and $A_2$ are unknown $d \times d$ matrices.\\
+
+As of now, we shall assume that the errors over time are independently and identically distributed. We can perform the following calculation:
+$$(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \implies Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$$
+
+where $B_1$, $B_2$, $\delta_t$ are obtained by pre-multiplying $A_1$, $A_2$, $\varepsilon_t$ by $(I - W)^{-1}$.
+\begin{align*}
+
+
+
+
+
+
+
+
+
+
 
 
 
