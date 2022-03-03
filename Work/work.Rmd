@@ -59,6 +59,20 @@ move the window. This would give a way to do path analysis.
 
 This process can be compared with other ones, such backward substitution or forward selection, eliminating the multi colinearity effect.
 
+## Implementation
+For each district, we started with only those districts which we found out to be possible regressors for that district according to the comparison rule stated above, and performed backward regression.We have performed the computation of the estimated W matrix for 14 overlapping timespans, viz. 
+
+- Day 41 to Day 100
+- Day 71 to Day 130
+- Day 100 to Day 160
+- ...
+- ...
+- ...
+- Day 400 to Day 460
+- Day 430 to Day 490
+
+<https://docs.google.com/spreadsheets/d/1RDhOMN0rF_tmnRcIUM1PpAdJuo0pNU9t/edit?usp=sharing&ouid=115423038723750570450&rtpof=true&sd=true>
+
 \section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
 \subsection{Traditional method}
 
