@@ -128,6 +128,35 @@ analysis.
 This process can be compared with other ones, such backward substitution
 or forward selection, eliminating the multi colinearity effect.
 
+\hypertarget{implementation}{%
+\subsection{Implementation}\label{implementation}}
+
+For each district, we started with only those districts which we found
+out to be possible regressors for that district according to the
+comparison rule stated above, and performed backward regression.We have
+performed the computation of the estimated W matrix for 14 overlapping
+timespans, viz.~
+
+\begin{itemize}
+\tightlist
+\item
+  Day 41 to Day 100
+\item
+  Day 71 to Day 130
+\item
+  Day 100 to Day 160
+\item
+  \ldots{}
+\item
+  \ldots{}
+\item
+  \ldots{}
+\item
+  Day 400 to Day 460
+\item
+  Day 430 to Day 490
+\end{itemize}
+
 \section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
 \subsection{Traditional method}
 
@@ -135,7 +164,7 @@ or forward selection, eliminating the multi colinearity effect.
 
 \subsection{GKB Method}
 
-\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $  Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t $}}}
+\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
 We estimate \$ B\_1\$ , \(B_2\) using Vector Auto-regressive(2) model.
 
@@ -164,5 +193,21 @@ variances and covariances over the two regimes and there are 6 unknowns
 :
 
 \(\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}\)
+
+\section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$, and $V_2$}}}
+
+We have been following the following spatio-temporal model:
+\[Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t\] where
+\(\varepsilon_t\) is the unknown error vector at time \(t\). Note that
+in this model, \(W\), \(A_1\), and \(A_2\) are unknown \(d \times d\)
+matrices.\textbackslash{}
+
+As of now, we shall assume that the errors over time are independently
+and identically distributed. We can perform the following calculation:
+\[(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \implies Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t\]
+
+where \(B_1\), \(B_2\), \(\delta_t\) are obtained by pre-multiplying
+\(A_1\), \(A_2\), \(\varepsilon_t\) by \((I - W)^{-1}\).
+\textbackslash begin\{align*\}
 
 \end{document}
