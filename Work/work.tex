@@ -62,6 +62,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{tcolorbox}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -165,20 +166,35 @@ variances and covariances over the two regimes and there are 6 unknowns
 
 \(\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}\)
 
-\section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$, and $V_2$}}}
+\section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$ and $V_2$}}}
 
-We have been following the following spatio-temporal model:
+We have been working with the following spatio-temporal model:
 \[Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t\] where
 \(\varepsilon_t\) is the unknown error vector at time \(t\). Note that
-in this model, \(W\), \(A_1\), and \(A_2\) are unknown \(d \times d\)
-matrices.\textbackslash{}
+in this model, \(W\), \(A_1\), and \(A_2\) are unknown, time-invariant,
+\(d \times d\) matrices, i.e.~parameters of the spatio-temporal
+model.\textbackslash{}
 
-As of now, we shall assume that the errors over time are independently
-and identically distributed. We can perform the following calculation:
-\[(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \implies Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t\]
+As of now, we shall assume that the error vectors over time are
+independently and identically distributed. We can perform the following
+calculation:
+\[(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \quad\implies\quad Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t\]
 
 where \(B_1\), \(B_2\), \(\delta_t\) are obtained by pre-multiplying
-\(A_1\), \(A_2\), \(\varepsilon_t\) by \((I - W)^{-1}\).
-\textbackslash begin\{align*\}
+\(A_1\), \(A_2\), \(\varepsilon_t\) by \((I - W)^{-1}\). The equation on
+the LHS is the actual model, and the transformed one on the RHS is a
+reduced model.
+
+Note that the reduced model is nothing but an usual VAR(2) model, with
+parameters \(B_1\) and \(B_2\). So, we can simply estimate \(B_1\) and
+\(B_2\) using traditional methodologies. Let us denote their estimates
+by \(\hat{B_1}\) and \(\hat{B_2}\) respectively.\textbackslash{}
+
+Now, we can estimate the error vectors in the following manner:
+\[\delta_t = Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\]
+
+\begin{tcolorbox}
+  We shall be making an assumption that the covariance matrices of $\varepsilon_t$ is a diagonal matrix. 
+\end{tcolorbox}
 
 \end{document}
