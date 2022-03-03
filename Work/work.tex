@@ -5,14 +5,10 @@
 \documentclass[
   12pt,
 ]{article}
-\title{Work Work}
-\author{Jyotishka \& his dear Aytijhya}
-\date{}
-
 \usepackage{amsmath,amssymb}
 \usepackage[]{libertine}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -80,9 +76,13 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+
+\title{Work Work}
+\author{Jyotishka \& his dear Aytijhya}
+\date{}
 
 \begin{document}
 \maketitle
@@ -135,7 +135,7 @@ or forward selection, eliminating the multi colinearity effect.
 
 \subsection{GKB Method}
 
-\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $  Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t $}}}
+\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
 We estimate \$ B\_1\$ , \(B_2\) using Vector Auto-regressive(2) model.
 
@@ -164,5 +164,21 @@ variances and covariances over the two regimes and there are 6 unknowns
 :
 
 \(\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}\)
+
+\section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$, and $V_2$}}}
+
+We have been following the following spatio-temporal model:
+\[Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t\] where
+\(\varepsilon_t\) is the unknown error vector at time \(t\). Note that
+in this model, \(W\), \(A_1\), and \(A_2\) are unknown \(d \times d\)
+matrices.\textbackslash{}
+
+As of now, we shall assume that the errors over time are independently
+and identically distributed. We can perform the following calculation:
+\[(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \implies Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t\]
+
+where \(B_1\), \(B_2\), \(\delta_t\) are obtained by pre-multiplying
+\(A_1\), \(A_2\), \(\varepsilon_t\) by \((I - W)^{-1}\).
+\textbackslash begin\{align*\}
 
 \end{document}
