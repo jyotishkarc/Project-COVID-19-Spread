@@ -128,11 +128,18 @@ where $B_1$, $B_2$, $\delta_t$ are obtained by pre-multiplying $A_1$, $A_2$, $\v
 Note that the reduced model is nothing but an usual VAR(2) model, with parameters $B_1$ and $B_2$. So, we can simply estimate $B_1$ and $B_2$ using traditional methodologies. Let us denote their estimates by $\hat{B_1}$ and $\hat{B_2}$ respectively.\\
 
 Now, we can estimate the error vectors in the following manner:
-$$\delta_t = Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})$$
+$$(I-W)^{-1} \varepsilon_t ~=~ \delta_t ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})$$
 
 \begin{tcolorbox}
-We shall be making an assumption that the covariance matrix of $\varepsilon_t$ is a diagonal matrix.
+We shall be making an assumption that the covariance matrix of $\varepsilon_t$, say $V$, is a diagonal matrix.
 \end{tcolorbox}
+
+Taking covariance on both sides, we get that
+\begin{align*}
+  (I-W)^{-1} \varepsilon_t  ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\\
+  &\text{cov}\big((I-W)^{-1} \varepsilon_t)  ~=~ \text{cov\big(Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\big)\\
+\end{align*}
+  
 
 
 
