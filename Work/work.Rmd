@@ -3,8 +3,8 @@ title: "Work Work"
 author: "Jyotishka & his dear Aytijhya"
 output:
   pdf_document:
-    keep_tex: true
-    extra_dependencies: ["tcolorbox"]
+    keep_tex: false
+    extra_dependencies: ["tcolorbox","xcolor","hyperref"]
   html_document:
     df_print: paged
 fontsize: 12pt
@@ -27,16 +27,17 @@ library(tinytex)
 \definecolor{mypink1}{rgb}{0.95, 0.91, 0.85}
 \definecolor{Prussian}{rgb}{0,0.2,0.4}
 \definecolor{DeepBlue}{HTML}{3E0080}
+
 # HELLO
 Let the vector $X = (X_1, X_2, . . . , X_k)$
-and Cov(X) = V which is partitioned as
+and $\text{cov}(X) = V$ which can be partitioned as
 
 $$\begin{bmatrix}
 V_{11} & V_{12}\\
 V_{21} & V_{22}
 \end{bmatrix}$$
 
-where $V_{11} = Cov(Y_1), V_{22} = Cov(Y_2)$ and $V_{12} = V_{21} = Cov(Y_1, Y_2)$, with 
+where $V_{11} = \text{cov}(Y_1), V_{22} = \text{cov}(Y_2)$ and $V_{12} = V_{21} = \text{cov}(Y_1, Y_2)$, with 
 $Y_1 = (X_1, X_2)$,
 $Y_2 = (X_3, . . . , X_k)$. \\
 Then $V_{11.2} = V_{11} - V_{12}V_{22}^{-1}V_{21}$.\\
@@ -71,7 +72,7 @@ For each district, we started with only those districts which we found out to be
 - Day 400 to Day 460
 - Day 430 to Day 490
 
-<https://docs.google.com/spreadsheets/d/1RDhOMN0rF_tmnRcIUM1PpAdJuo0pNU9t/edit?usp=sharing&ouid=115423038723750570450&rtpof=true&sd=true>
+\url{https://docs.google.com/spreadsheets/d/1RDhOMN0rF_tmnRcIUM1PpAdJuo0pNU9t/edit?usp=sharing&ouid=115423038723750570450&rtpof=true&sd=true}
 
 \section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
 \subsection{Traditional method}
@@ -130,7 +131,7 @@ Now, we can estimate the error vectors in the following manner:
 $$\delta_t = Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})$$
 
 \begin{tcolorbox}
-  We shall be making an assumption that the covariance matrix of $\varepsilon_t$ is a diagonal matrix.
+We shall be making an assumption that the covariance matrix of $\varepsilon_t$ is a diagonal matrix.
 \end{tcolorbox}
 
 

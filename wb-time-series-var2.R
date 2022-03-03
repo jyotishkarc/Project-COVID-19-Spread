@@ -22,9 +22,7 @@ ts.mat <-function(n){
       
       # uni.dist <- districts.conf$District %>%
       #    unique() %>%
-      #    setdiff(c("Unknown", "Other.State"))
       
-      uni.dist <- arranged.districts
       L <- uni.dist %>% length()
       
       X <- list()

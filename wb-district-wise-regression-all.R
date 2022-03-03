@@ -84,9 +84,3 @@ W[ncol(M),which(G==0)] <- 0
 W <- as.data.frame(W)
 colnames(W) <- uni.dist -> rownames(W)
 
-
-
-
-
-
-
