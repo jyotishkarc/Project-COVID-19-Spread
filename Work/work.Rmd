@@ -70,6 +70,8 @@ For each district, we started with only those districts which we found out to be
 - Day 400 to Day 460
 - Day 430 to Day 490
 
+<https://docs.google.com/spreadsheets/d/1RDhOMN0rF_tmnRcIUM1PpAdJuo0pNU9t/edit?usp=sharing&ouid=115423038723750570450&rtpof=true&sd=true>
+
 \section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
 \subsection{Traditional method}
 
