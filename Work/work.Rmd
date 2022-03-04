@@ -85,7 +85,7 @@ For each district, we started with only those districts which we found out to be
 
 \section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
-We estimate $ B_1$ , $B_2$ using Vector Auto-regressive(2) model.
+We estimate $B_1$ , $B_2$ using Vector Auto-regressive(2) model.
 
 \section{\textbf{\textcolor{DeepBlue}{Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
 Method of estimation of W is discussed in section 1.(\textcolor{red}{Why this W and the W of the model in section 1 should be same?})\\
@@ -162,7 +162,7 @@ In the case of $s = 2$, i.e. two regimes, we are required to solve for $M$, $V_1
 $$M^{T} V_1 M = C_1\qquad\text{and}\qquad M^{T} V_2 M = C_2$$
 where the structures of all the matrices have been discussed earlier.
 
-We can start off by writing down a spectral decomposition of $C_2$, let's say $C_2 = D^{T}_2 \Sigma_2 D_2$ where $\Sigma_2$ is a diagonal matrix containing eigenvalues of $C_2$, and the rows of $D_2$ contain the corresponding eigenvectors.
+We can start off by writing down a spectral decomposition of $C_2$, let's say $C_2 = D^{T}_2 \Sigma_2 D_2$ where $\Sigma_2$ is a diagonal matrix containing the eigenvalues of $C_2$, and the rows of $D_2$ contain the corresponding eigenvectors.
 
 
 
