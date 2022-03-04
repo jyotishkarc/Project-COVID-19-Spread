@@ -48,10 +48,7 @@ v_{11.2} & v_{12.2} \\
 v_{21.2} & v_{22.2}
 \end{bmatrix}$$
 
-We would like to compare, between $v_{12.2}/v_{11.2}$ and $v_{12.2}/v_{22.2}$ and keep whichever is bigger among
-them and discard the other one. This would give regression coefficient between each pair of random variables
-eliminating the effect of the other variables.
-This way one can select the coefficients W matrix which would be non-zero, in the model
+We would like to compare, between $v_{12.2}/v_{11.2}$ and $v_{12.2}/v_{22.2}$ and keep whichever is bigger among them and discard the other one. This would give regression coefficient between each pair of random variables eliminating the effect of the other variables. This way one can select the coefficients W matrix which would be non-zero, in the model
 
 $$Y = W Y + \epsilon$$
 
@@ -118,14 +115,14 @@ $\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1},
 
 \section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$ and $V_2$}}}
 
-We have been working with the following spatio-temporal model: $$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where $\varepsilon_t$ is the unknown error vector at time $t$. Note that in this model, $W$, $A_1$, and $A_2$ are unknown, time-invariant, $d \times d$ matrices, i.e. parameters of the spatio-temporal model.\\
+We have been working with the following spatio-temporal model: $$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where $\varepsilon_t$ is the unknown error vector at time $t$. Note that in this model, $W$, $A_1$, and $A_2$ are unknown, time-invariant, $d \times d$ matrices, i.e. parameters of the spatio-temporal model.
 
 As of now, we shall assume that the error vectors over time are independently and identically distributed. We can perform the following calculation:
 $$(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \quad\implies\quad Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$$
 
 where $B_1$, $B_2$, $\delta_t$ are obtained by pre-multiplying $A_1$, $A_2$, $\varepsilon_t$ by $(I - W)^{-1}$. The equation on the LHS is the actual model, and the transformed one on the RHS is a reduced model.
 
-Note that the reduced model is nothing but an usual VAR(2) model, with parameters $B_1$ and $B_2$. So, we can simply estimate $B_1$ and $B_2$ using traditional methodologies. Let us denote their estimates by $\hat{B_1}$ and $\hat{B_2}$ respectively.\\
+Note that the reduced model is nothing but an usual VAR(2) model, with parameters $B_1$ and $B_2$. So, we can simply estimate $B_1$ and $B_2$ using traditional methodologies. Let us denote their estimates by $\hat{B_1}$ and $\hat{B_2}$ respectively.
 
 Now, we can estimate the error vectors in the following manner:
 $$(I-W)^{-1} \varepsilon_t ~=~ \delta_t ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})$$
@@ -136,11 +133,36 @@ We shall be making an assumption that the covariance matrix of $\varepsilon_t$, 
 
 Taking covariance on both sides, we get that
 \begin{align*}
-  (I-W)^{-1} \varepsilon_t  ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\\
-  &\text{cov}\big((I-W)^{-1} \varepsilon_t)  ~=~ \text{cov\big(Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\big)\\
-\end{align*}
-  
+  &\qquad\quad (I-W)^{-1} \varepsilon_t  ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\\
+  &\implies~ \text{cov}\big((I-W)^{-1} \varepsilon_t\big)  ~=~ \text{cov}\big(Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\big)\\
+  &\implies~(I-W)^{-1} V_\varepsilon \big((I-W)^{-1}\big)^{T} ~=~ \text{ResCov}_Y\\
+  &\implies~ (I-W)^{T} V^{-1}_\varepsilon (I-W) ~=~ \text{ResCov}^{-1}_Y\\
+\end{align*} 
+We shall be writing the last equation as: $M^{T}VM ~=~ \text{C}$ , where we are defining: $M := I-W$, $V := V^{-1}_\varepsilon$, and $C := \text{ResCov}^{-1}_Y$.
 
+This is to be noted that by our assumption, the following structures have been imposed on the matrices that we are supposed to estimate:
+
+- The principal diagonal of $W$ should contain only $0$'s. Naturally, the prinicipal diaginal of $M$ should contain only $1$'s.
+
+- $V_\varepsilon$ is, by assumption, a diagonal matrix with strictly positive entries. Thus, the matrix $V$ should be a diagonal matrix, with its diagonal entries equal to the reciprocals of the diagonal entries of $V_\varepsilon$.
+
+- Being a covariance matrix, $\text{ResCov}_Y$ is a known, symmetric, positive definite matrix (That is to be estimated from data). Since the inverse of a positive definite matrix is necessarily positive definite, $C$ is a known, symmetric, positive definite matrix.
+
+- All the matrices mentioned above are $d\times d$ matrices. $M$ and $V$ are to be estimated, and $C$ is a known, symmetric, positive definite matrix.
+
+
+
+\begin{tcolorbox}[colback=red!5, colframe=red!75!black, title=Estimation for two regimes]
+We can partition our time series dataset into multiple regimes, and estimate $M$ and $V$ accordingly. For simplicity, we may consider two regimes. In general, for the $s$-th regime, we shall be denoting the the corresponding matrices by $M$, $V_s$ and $C_s$. Note that $M$ is independent of $s$, because we are assuming that the spatial matrix $W$ remains invariant over time.
+%\tcblower
+%Here, you see the lower part of the box.
+\end{tcolorbox}
+
+In the case of $s = 2$, i.e. two regimes, we are required to solve for $M$, $V_1$ and $V_2$ the following system of equations:
+$$M^{T} V_1 M = C_1\qquad\text{and}\qquad M^{T} V_2 M = C_2$$
+where the structures of all the matrices have been discussed earlier.
+
+We can start off by writing down a spectral decomposition of $C_2$, let's say $C_2 = D^{T}_2 \Sigma_2 D_2$ where $\Sigma_2$ is a diagonal matrix containing eigenvalues of $C_2$, and the rows of $D_2$ contain the corresponding eigenvectors.
 
 
 
