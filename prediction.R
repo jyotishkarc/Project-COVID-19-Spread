@@ -40,12 +40,12 @@ colnames(districts.cleaned) <- uni.dist
 
 x=VAR(districts.cleaned[1:400,], p = 2, type = "const")
 L = 23
-A_1 <- A_2 <- matrix(0, nrow = L, ncol = L)
+B_1 <- B_2 <- matrix(0, nrow = L, ncol = L)
 for(i in 1:L){
-   A_1[i , ] <- x$varresult[[i]]$coefficients[1:L ]
-   A_2[i , ] <- x$varresult[[i]]$coefficients[(L+1):(2*L) ]
+   B_1[i , ] <- x$varresult[[i]]$coefficients[1:L ]
+   B_2[i , ] <- x$varresult[[i]]$coefficients[(L+1):(2*L) ]
 }
-colnames(A_1) <- colnames(A_2) <- rownames(A_1) <- rownames(A_2) <- uni.dist
+colnames(B_1) <- colnames(B_2) <- rownames(B_1) <- rownames(B_2) <- uni.dist
 var.pred = predict(x, n.ahead = nrow(districts.cleaned)-400)
 error=numeric(L)
 
