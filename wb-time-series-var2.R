@@ -1,4 +1,3 @@
-
 library(dplyr)
 library(vars)
 library(readxl)
@@ -18,7 +17,7 @@ ts.mat <-function(n){
       arranged.districts <- colnames(arranged.districts.data)
       
       uni <- districts.conf[districts.conf[,3] != "Unknown" ||
-                            districts.conf[,3] != "Other.State" , ][,c(1,3,4)]
+                               districts.conf[,3] != "Other.State" , ][,c(1,3,4)]
       
       # uni.dist <- districts.conf$District %>%
       #    unique() %>%
@@ -91,7 +90,7 @@ for (k in 1:7) {
    current.sheet.name[k] <- paste0(k," - ")
    print(current.sheet.name[k])
    matrix.list.all <- append(matrix.list.all,
-                                 list(matrix.list[[k]]))
+                             list(matrix.list[[k]]))
 }
 
 names(matrix.list.all) <- current.sheet.name
@@ -99,4 +98,3 @@ names(matrix.list.all) <- current.sheet.name
 writexl::write_xlsx(matrix.list.all, path ="C:\\Users\\JYOTISHKA\\Desktop\\matrix.list.all.xlsx")
 
 #writexl::write_xlsx(matrix.list.all, path ="/Users/aytijhyasaha/Desktop/matrix.list.all.xlsx")
-
