@@ -57,3 +57,8 @@ error=error/154
 names(error)=uni.dist 
 error
 
+const=numeric(L)
+for(i in 1:L){
+   const[i]=x$varresult[[i]]$coefficients[47]
+}
+B_1 %*% districts.cleaned[400,]+B_2 %*% districts.cleaned[399,]->y
