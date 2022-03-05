@@ -28,7 +28,7 @@ library(tinytex)
 \definecolor{Prussian}{rgb}{0,0.2,0.4}
 \definecolor{DeepBlue}{HTML}{3E0080}
 
-# HELLO
+# An algorithm to estimate W
 Let the vector $X = (X_1, X_2, . . . , X_k)$
 and $\text{cov}(X) = V$ which can be partitioned as
 
