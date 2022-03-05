@@ -66,6 +66,5 @@ for(i in 1:L){
    const[i]=x$varresult[[i]]$coefficients[47]
 }
 
-temp <- const + B_1 %*% t(as.matrix(districts.cleaned[400,])) 
-            + B_2 %*% t(as.matrix(districts.cleaned[399,]))
+temp <- const + B_1 %*% t(as.matrix(districts.cleaned[400,])) + B_2 %*% t(as.matrix(districts.cleaned[399,]))
 
