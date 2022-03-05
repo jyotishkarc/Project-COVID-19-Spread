@@ -4,7 +4,7 @@ author: "Jyotishka & his dear Aytijhya"
 output:
   pdf_document:
     keep_tex: false
-    extra_dependencies: ["tcolorbox","xcolor","hyperref"]
+    extra_dependencies: ["amsmath","tcolorbox","xcolor","hyperref","pifont"]
   html_document:
     df_print: paged
 fontsize: 12pt
@@ -37,14 +37,10 @@ V_{11} & V_{12}\\
 V_{21} & V_{22}
 \end{bmatrix}$$
 
-where $V_{11} = \text{cov}(Y_1), V_{22} = \text{cov}(Y_2)$ and $V_{12} = V_{21} = \text{cov}(Y_1, Y_2)$, with 
-$Y_1 = (X_1, X_2)$,
-$Y_2 = (X_3, . . . , X_k)$. \\
-Then $V_{11.2} = V_{11} - V_{12}V_{22}^{-1}V_{21}$.\\
-Consider the individual elements of
+where $V_{11} = \text{cov}(Y_1), V_{22} = \text{cov}(Y_2)$ and $V_{12} = V_{21} = \text{cov}(Y_1, Y_2)$, with $Y_1 = (X_1, X_2)$, $Y_2 = (X_3, . . . , X_k)$. Then $V_{11.2} = V_{11} - V_{12}V_{22}^{-1}V_{21}$. Consider the individual elements of
 $$V_{11.2} =
 \begin{bmatrix}
-v_{11.2} & v_{12.2} \\
+v_{11.2} & v_{12.2}\\
 v_{21.2} & v_{22.2}
 \end{bmatrix}$$
 
@@ -88,9 +84,7 @@ For each district, we started with only those districts which we found out to be
 We estimate $B_1$ , $B_2$ using Vector Auto-regressive(2) model.
 
 \section{\textbf{\textcolor{DeepBlue}{Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
-Method of estimation of W is discussed in section 1.(\textcolor{red}{Why this W and the W of the model in section 1 should be same?})\\
-For i = 1,2; 
-$A_i = (I-W)B_i$
+Method of estimation of W is discussed in section 1.(\textcolor{red}{Why this W and the W of the model in section 1 should be same?}) For i = 1,2; $A_i = (I-W)B_i$.
 
 \begin{align*}
     \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\
@@ -159,10 +153,26 @@ We can partition our time series dataset into multiple regimes, and estimate $M$
 \end{tcolorbox}
 
 In the case of $s = 2$, i.e. two regimes, we are required to solve for $M$, $V_1$ and $V_2$ the following system of equations:
-$$M^{T} V_1 M = C_1\qquad\text{and}\qquad M^{T} V_2 M = C_2$$
+$$M^{T} V_1 M = C_1\qquad\text{and}\qquad M^{T} V_2 M = C_2 \label{eq:1} \tag{\ding{97}}$$
 where the structures of all the matrices have been discussed earlier.
 
-We can start off by writing down a spectral decomposition of $C_2$, let's say $C_2 = D^{T}_2 \Sigma_2 D_2$ where $\Sigma_2$ is a diagonal matrix containing the eigenvalues of $C_2$, and the rows of $D_2$ contain the corresponding eigenvectors.
+The task of estimation can be performed in the following way:
+
+\begin{itemize}
+  \item We can start off by writing down a spectral decomposition of $C_1$, let's say $C_1 = D^{T}_1 \Sigma_1 D_1$ where $\Sigma_1$ is a diagonal matrix containing the eigenvalues of $C_1$, say $\lambda_1$, $\lambda_2$, $\cdots$, $\lambda_d$, and the rows of $D_1$ contain the corresponding eigenvectors.
+
+  \item Define $V_1 := \text{diag}\big(\lambda^2_1, \lambda^2_2, \cdots, \lambda^2_d\big)$, viz. a diagonal matrix containing the squared eigenvalues of $C_1$ as its principal diagonal elements.
+  
+  \item Define $M := V_1^{-\frac{1}{2}} \Sigma^{\frac{1}{2}}_1 D_1$. Note that:
+  $$M^{T} V_1 M ~=~ D_1^T ~\Sigma^{\frac{1}{2}}_1~ V_1^{-\frac{1}{2}}~ V_1~ V_1^{\frac{1}{2}} ~\Sigma^{\frac{1}{2}}_1 ~D_1 ~=~ D_1^T ~\Sigma_1 ~D_1 ~=~ C_1$$
+  \item Define $V_2 := \big(M^{-1})^T C_2 M^{-1}$.
+\end{itemize}
+
+This is to be noted that our chosen $V_1$, $V_2$ and $M$ satisfy all the desired properties mentioned earlier. So, our chosen $W$, $V_1$ and $V_2$ are solutions to the system of equations \eqref{eq:1}.
+
+
+
+
 
 
 
