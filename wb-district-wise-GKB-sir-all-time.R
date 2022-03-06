@@ -158,11 +158,3 @@ names(reg.matrix.list.all) <- current.sheet.name
 
 writexl::write_xlsx(reg.matrix.list.all, 
                     path = "C:\\Users\\JYOTISHKA\\Desktop\\reg-matrix-all.xlsx")
-
-
-
-
-
-
-
-

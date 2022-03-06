@@ -136,7 +136,7 @@ reg.matrix <- function(start.day, end.day){
 
 ##########################################################
 
-start.day <- seq(41,491, by = 30)
+start.day <- seq(41,461, by = 30)
 end.day <- start.day + 59
 
 reg.matrix.list <- reg.matrix.list.all <- list()
