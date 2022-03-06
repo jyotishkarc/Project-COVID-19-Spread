@@ -1,7 +1,7 @@
 library(dplyr)
 path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
-# districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv")
-districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
+districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv")
+# districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
 districts.df <- as.data.frame(districts.df)
 districts.conf <- districts.df %>% filter(State == "West Bengal")
 

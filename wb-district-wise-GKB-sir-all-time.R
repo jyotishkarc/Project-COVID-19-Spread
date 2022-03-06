@@ -19,10 +19,10 @@ for (i in 1:length(uni.dist)) {
    H[[i]] <- uni[uni[,2] == uni.dist[i],3]
 }
 
-M <- matrix(0, nrow = 503, ncol = 23)
+M <- matrix(0, nrow = 554, ncol = 23)
 
 for (k in 1:23) {
-   M[,k] <- c(rep(0, nrow(M)-length(H[[k]])), H[[k]])
+   M[,k] <- c(rep(0, (nrow(M)-length(H[[k]]))), H[[k]])
 }
 
 
@@ -149,7 +149,6 @@ for (k in 1:length(start.day)) {
                                       end.day = end.day[k])
    
    current.sheet.name[k] <- paste0(start.day[k]," - ",end.day[k])
-   print(current.sheet.name[k])
    
    reg.matrix.list.all <- append(reg.matrix.list.all,
                                  list(reg.matrix.list[[k]]))
