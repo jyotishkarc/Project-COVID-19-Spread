@@ -66,37 +66,37 @@ For each district, we started with only those districts which we found out to be
 
 <!-- \url{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing} -->
 
+To view the regression matrices along with colour codes arranged based on distance-induced suitable ordering
 
-
-\href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{Click here}
+\href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{\textcolor{blue}{Please click here}}
 
 \section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
 We estimate $B_1$ , $B_2$ using Vector Auto-regressive(2) model.
 
 \section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
-Method of estimation of W is discussed in section 1. For i = 1,2; $A_i = (I-W)B_i$.
+Method of estimation of W is discussed in section 1. 
 
-\begin{align*}
-    \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\
-    &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,\eta) + \beta\cdot\text{cov}(p,\varepsilon)\\
-    &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,q - \beta p) + \beta\cdot\text{cov}(p,p - \alpha q)\\
-    &= \alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p) - \alpha\beta\cdot\text{cov}(p,q)
-\end{align*}
+<!-- \begin{align*} -->
+<!--     \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\ -->
+<!--     &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,\eta) + \beta\cdot\text{cov}(p,\varepsilon)\\ -->
+<!--     &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,q - \beta p) + \beta\cdot\text{cov}(p,p - \alpha q)\\ -->
+<!--     &= \alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p) - \alpha\beta\cdot\text{cov}(p,q) -->
+<!-- \end{align*} -->
 
-Therefore, we have:
-$$~\text{cov}(p,q) = \dfrac{1}{1+\alpha\beta}\Big[\alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p)\Big] $$
+<!-- Therefore, we have: -->
+<!-- $$~\text{cov}(p,q) = \dfrac{1}{1+\alpha\beta}\Big[\alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p)\Big] $$ -->
 
-Also,we calculated 
-$$var(q) = \frac{\beta^2 \sigma^2_{\eta,s} + \sigma^2_{\epsilon,s}}{(1-\alpha \beta)^2} $$
-$$var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \beta)^2}$$
+<!-- Also,we calculated  -->
+<!-- $$var(q) = \frac{\beta^2 \sigma^2_{\eta,s} + \sigma^2_{\epsilon,s}}{(1-\alpha \beta)^2} $$ -->
+<!-- $$var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \beta)^2}$$ -->
 
-For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns : $\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$
-
-
+<!-- For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns : $\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$ -->
 
 
-\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~An Approach to estimate $W$, $V_1$ and $V_2$}}}
+
+
+
 
 We have been working with the following spatio-temporal model: $$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where $\varepsilon_t$ is the unknown error vector at time $t$. Note that in this model, $W$, $A_1$, and $A_2$ are unknown, time-invariant, $d \times d$ matrices, i.e. parameters of the spatio-temporal model.
 
