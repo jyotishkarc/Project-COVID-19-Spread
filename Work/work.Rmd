@@ -1,6 +1,6 @@
 ---
 title: "Work Work"
-author: "Jyotishka & his dear Aytijhya"
+author: "Jyotishka & Aytijhya"
 output:
   pdf_document:
     keep_tex: false
