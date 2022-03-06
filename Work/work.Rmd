@@ -1,6 +1,6 @@
 ---
 title: "Work Work"
-author: "Jyotishka & Oitijjho"
+author: "Jyotishka & Aytijhya"
 output:
   pdf_document:
     keep_tex: false
@@ -66,9 +66,21 @@ For each district, we started with only those districts which we found out to be
 
 <!-- \url{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing} -->
 
-To view the regression matrices along with colour codes arranged based on distance-induced suitable ordering
+To view the regression matrices along with colour codes arranged based on distance-induced suitable ordering, \href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{\textcolor{blue}{please click here}}.
 
-\href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{\textcolor{blue}{Please click here}}
+Each colour code corresponding to the intersection of a specific row and a specific column represents a different measure of geographical distance between the corresponding districts. The codes can be found in the following diagram:
+
+```{r pressure, echo=FALSE, fig.cap="Colour codes", out.height='40%', out.width = '40%', fig.align='center'}
+
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Work/"
+path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"colour-codes.png")
+
+knitr::include_graphics(path = path.image)
+```
+
+Note that if there are (nearly) $k$ districts in-between two specific districts, the corresponding entry is coloured by the $k$-th colour from the above list.
 
 \section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
@@ -114,7 +126,7 @@ $$(I-W)^{-1} \varepsilon_t ~=~ \delta_t ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2}
 We shall be making an assumption that the covariance matrix of $\varepsilon_t$, say $V$, is a diagonal matrix.
 \end{tcolorbox}
 
-Taking covariance on both sides, we get that
+Taking covariance on both sides, we get that:
 \begin{align*}
   &\qquad\quad (I-W)^{-1} \varepsilon_t  ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\\
   &\implies~ \text{cov}\big((I-W)^{-1} \varepsilon_t\big)  ~=~ \text{cov}\big(Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\big)\\
@@ -158,18 +170,6 @@ The task of estimation can be performed in the following way:
 \end{itemize}
 
 This is to be noted that our chosen $V_1$, $V_2$ and $M$ satisfy all the desired properties mentioned earlier. So, our chosen $W$, $V_1$ and $V_2$ are solutions to the system of equations \eqref{eq:1}.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
