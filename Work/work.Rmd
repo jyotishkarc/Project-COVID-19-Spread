@@ -1,6 +1,6 @@
 ---
-title: "Work Work"
-author: "Jyotishka & Aytijhya"
+title: "Brief Description of the Work"
+author: "Jyotishka Ray Choudhury & Aytijhya Saha"
 output:
   pdf_document:
     keep_tex: false
@@ -73,7 +73,7 @@ Each colour code corresponding to the intersection of a specific row and a speci
 ```{r pressure, echo=FALSE, fig.cap="Colour codes", out.height='40%', out.width = '40%', fig.align='center'}
 
 path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Work/"
-path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+# path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
 
 path.image <- paste0(path,"colour-codes.png")
 
