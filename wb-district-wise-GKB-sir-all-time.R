@@ -19,7 +19,7 @@ for (i in 1:length(uni.dist)) {
    H[[i]] <- uni[uni[,2] == uni.dist[i],3]
 }
 
-M <- matrix(0, nrow = 503, ncol = 23)
+M <- matrix(0, nrow = 554, ncol = 23)
 
 for (k in 1:23) {
    M[,k] <- c(rep(0, nrow(M)-length(H[[k]])), H[[k]])
@@ -159,11 +159,3 @@ names(reg.matrix.list.all) <- current.sheet.name
 
 writexl::write_xlsx(reg.matrix.list.all, 
                     path = "C:\\Users\\JYOTISHKA\\Desktop\\reg-matrix-all.xlsx")
-
-
-
-
-
-
-
-
