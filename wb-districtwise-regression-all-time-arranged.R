@@ -1,7 +1,7 @@
 library(dplyr)
 path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
-# districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv")
-districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
+districts.df <- read.csv("G:/B.Stat/Projects/Gopal K. Basak/GKB Sir/Dataset/districts.csv")
+# districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
 districts.df <- as.data.frame(districts.df)
 districts.conf <- districts.df %>% filter(State == "West Bengal")
 
@@ -55,7 +55,7 @@ reg.matrix <- function(start.day, end.day){
    pref <- W <- matrix(0, nrow = 23, ncol = 23) %>% as.data.frame()
    
    colnames(X) <- colnames(V) <- rownames(V) <- 
-      colnames(pref) <- rownames(pref) <- colnames(W) <- rownames(W) <- uni.dist
+      colnames(pref) <- rownames(pref) <- colnames(W) <- rownames(W) <- arranged.dist
    
    
    for (i in 1:ncol(X)) {
@@ -157,10 +157,11 @@ for (k in 1:length(start.day)) {
 
 names(reg.matrix.list.all) <- current.sheet.name
 
+# writexl::write_xlsx(reg.matrix.list.all, 
+#                     path = "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/reg-matrix-all-arranged.xlsx")
+
 writexl::write_xlsx(reg.matrix.list.all, 
-                    path = "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/reg-matrix-all-arranged.xlsx")
-
-
+                    path = "C:\\Users\\JYOTISHKA\\Desktop\\reg-matrix-all-arranged.xlsx")
 
 
 

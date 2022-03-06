@@ -1,6 +1,6 @@
 ---
 title: "Work Work"
-author: "Jyotishka & Aytijhya"
+author: "Jyotishka & Oitijjho"
 output:
   pdf_document:
     keep_tex: false
@@ -28,9 +28,9 @@ library(tinytex)
 \definecolor{Prussian}{rgb}{0,0.2,0.4}
 \definecolor{DeepBlue}{HTML}{3E0080}
 
-# An algorithm to estimate W
-Let the vector $X = (X_1, X_2, . . . , X_k)$
-and $\text{cov}(X) = V$ which can be partitioned as
+\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of $W$ in the model $Y=WY +\epsilon$}}}
+
+Let the vector $X = (X_1, X_2, . . . , X_k)$ and $\text{cov}(X) = V$ which can be partitioned as:
 
 $$\begin{bmatrix}
 V_{11} & V_{12}\\
@@ -51,40 +51,31 @@ $$Y = W Y + \epsilon$$
 and would be a way to see directional dependence in the fixed time period. Then we would
 move the window. This would give a way to do path analysis. 
 
-This process can be compared with other ones, such backward substitution or forward selection, eliminating the multi colinearity effect.
+This process can be compared with other ones, such backward substitution or forward selection, eliminating the multicollinearity effect.
 
 ## Implementation
-For each district, we started with only those districts which we found out to be possible regressors for that district according to the comparison rule stated above, and performed backward regression.We have performed the computation of the estimated W matrix for 14 overlapping timespans, viz. 
+For each district, we started with only those districts which we found out to be possible regressors for that district according to the comparison rule stated above, and performed backward regression. We have performed the computation of the estimated W matrix for 14 overlapping timespans, viz. 
 
 - Day 41 to Day 100
 - Day 71 to Day 130
 - Day 100 to Day 160
-- ...
-- ...
-- ...
+- $\qquad\qquad\vdots$
+- $\qquad\qquad\vdots$
 - Day 400 to Day 460
 - Day 430 to Day 490
 
-\url{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}
-
-\section{\textbf{\textcolor{DeepBlue}{Estimation of W in the model $ Y=WY +\epsilon $}}}
-\subsection{Traditional method}
+<!-- \url{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing} -->
 
 
 
-\subsection{Rigobon's Method of Partitioning}
+\href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{Click here}
 
-
-
-
-\subsection{GKB Method}
-
-\section{\textbf{\textcolor{DeepBlue}{Estimation reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
+\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
 
 We estimate $B_1$ , $B_2$ using Vector Auto-regressive(2) model.
 
-\section{\textbf{\textcolor{DeepBlue}{Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
-Method of estimation of W is discussed in section 1.(\textcolor{red}{Why this W and the W of the model in section 1 should be same?}) For i = 1,2; $A_i = (I-W)B_i$.
+\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
+Method of estimation of W is discussed in section 1. For i = 1,2; $A_i = (I-W)B_i$.
 
 \begin{align*}
     \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\
@@ -100,14 +91,12 @@ Also,we calculated
 $$var(q) = \frac{\beta^2 \sigma^2_{\eta,s} + \sigma^2_{\epsilon,s}}{(1-\alpha \beta)^2} $$
 $$var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \beta)^2}$$
 
-For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns :
-
-$\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$
+For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns : $\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$
 
 
 
 
-\section{\textbf{\textcolor{DeepBlue}{An Approach to estimate $W$, $V_1$ and $V_2$}}}
+\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~An Approach to estimate $W$, $V_1$ and $V_2$}}}
 
 We have been working with the following spatio-temporal model: $$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where $\varepsilon_t$ is the unknown error vector at time $t$. Note that in this model, $W$, $A_1$, and $A_2$ are unknown, time-invariant, $d \times d$ matrices, i.e. parameters of the spatio-temporal model.
 
@@ -164,7 +153,7 @@ The task of estimation can be performed in the following way:
   \item Define $V_1 := \text{diag}\big(\lambda^2_1, \lambda^2_2, \cdots, \lambda^2_d\big)$, viz. a diagonal matrix containing the squared eigenvalues of $C_1$ as its principal diagonal elements.
   
   \item Define $M := V_1^{-\frac{1}{2}} \Sigma^{\frac{1}{2}}_1 D_1$. Note that:
-  $$M^{T} V_1 M ~=~ D_1^T ~\Sigma^{\frac{1}{2}}_1~ V_1^{-\frac{1}{2}}~ V_1~ V_1^{\frac{1}{2}} ~\Sigma^{\frac{1}{2}}_1 ~D_1 ~=~ D_1^T ~\Sigma_1 ~D_1 ~=~ C_1$$
+  $$M^{T} V_1 M ~=~ D_1^T ~\Sigma^{\frac{1}{2}}_1~ V_1^{-\frac{1}{2}}~ V_1~ V_1^{-\frac{1}{2}} ~\Sigma^{\frac{1}{2}}_1 ~D_1 ~=~ D_1^T ~\Sigma_1 ~D_1 ~=~ C_1$$
   \item Define $V_2 := \big(M^{-1})^T C_2 M^{-1}$.
 \end{itemize}
 
