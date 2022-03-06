@@ -73,7 +73,7 @@ Each colour code corresponding to the intersection of a specific row and a speci
 ```{r pressure, echo=FALSE, fig.cap="Colour codes", out.height='40%', out.width = '40%', fig.align='center'}
 
 path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Work/"
-path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
 
 path.image <- paste0(path,"colour-codes.png")
 
@@ -145,7 +145,35 @@ This is to be noted that by our assumption, the following structures have been i
 
 - All the matrices mentioned above are $d\times d$ matrices. $M$ and $V$ are to be estimated, and $C$ is a known, symmetric, positive definite matrix.
 
+```{r, echo=FALSE, fig.cap="Time series plots 1", out.height='60%', out.width = '100%', fig.align='center'}
 
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"ts-plot-full-time.jpeg")
+
+knitr::include_graphics(path = path.image)
+```
+
+```{r, echo=FALSE, fig.cap="Time series plots 2", out.height='60%', out.width = '100%', fig.align='center'}
+
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"ts-plot-full-time-8-15.jpeg")
+
+knitr::include_graphics(path = path.image)
+```
+
+```{r, echo=FALSE, fig.cap="Time series plots 3", out.height='60%', out.width = '100%', fig.align='center'}
+
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"ts-plot-full-time-16-23.jpeg")
+
+knitr::include_graphics(path = path.image)
+```
 
 \begin{tcolorbox}[colback=red!5, colframe=red!75!black, title=Estimation for two regimes]
 We can partition our time series dataset into multiple regimes, and estimate $M$ and $V$ accordingly. For simplicity, we may consider two regimes. In general, for the $s$-th regime, we shall be denoting the the corresponding matrices by $M$, $V_s$ and $C_s$. Note that $M$ is independent of $s$, because we are assuming that the spatial matrix $W$ remains invariant over time.
