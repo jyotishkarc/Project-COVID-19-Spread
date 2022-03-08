@@ -95,6 +95,7 @@ for (k in 1:7) {
 
 names(matrix.list.all) <- current.sheet.name
 
-writexl::write_xlsx(matrix.list.all, path ="C:\\Users\\JYOTISHKA\\Desktop\\matrix.list.all.xlsx")
+writexl::write_xlsx(matrix.list.all, 
+                    path ="C:\\Users\\JYOTISHKA\\Desktop\\matrix.list.all.xlsx")
 
 #writexl::write_xlsx(matrix.list.all, path ="/Users/aytijhyasaha/Desktop/matrix.list.all.xlsx")
