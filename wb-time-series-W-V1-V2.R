@@ -36,7 +36,12 @@ districts.cleaned <- apply(M, 2, function(vec){
    return(vec - temp)
 })
 
-districts.cleaned <- as.data.frame(districts.cleaned)
+districts.cleaned <- districts.cleaned %>% apply(c(1,2), function(val){
+   if(val < 0){
+      return(0)
+   }
+   else return(log(val + 1))
+}) %>% as.data.frame()
 
 # V2 <- diag(diag(RVY2.inv))
 #E1 <- eigen(RVY1)
