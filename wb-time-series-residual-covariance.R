@@ -48,6 +48,12 @@ ts.mat <-function(n){
       
       #E <- districts.cleaned %>% select(arranged.districts)
    }
+   districts.cleaned <- districts.cleaned %>% apply(c(1,2), function(val){
+      if(val < 0){
+         return(0)
+      }
+      else return(log(val + 1))
+   }) %>% as.data.frame()
    
    G <- matrix(0, nrow = floor(J/n), ncol = L)
    
