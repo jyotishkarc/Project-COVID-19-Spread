@@ -12,8 +12,10 @@ geometry: margin=0.9in
 mainfont: cochineal
 fontfamily: libertine
 sansfont: Linux Biolinum O
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -24,51 +26,73 @@ library(tinytex)
 
 ```
 
+```{=tex}
 \definecolor{mypink1}{rgb}{0.95, 0.91, 0.85}
 \definecolor{Prussian}{rgb}{0,0.2,0.4}
 \definecolor{DeepBlue}{HTML}{3E0080}
-
+```
 \section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of $W$ in the model $Y=WY +\epsilon$}}}
 
-Let the vector $X = (X_1, X_2, . . . , X_k)$ and $\text{cov}(X) = V$ which can be partitioned as:
+Let the vector $X = (X_1, X_2, . . . , X_k)$ and $\text{cov}(X) = V$
+which can be partitioned as:
 
 $$\begin{bmatrix}
 V_{11} & V_{12}\\
 V_{21} & V_{22}
 \end{bmatrix}$$
 
-where $V_{11} = \text{cov}(Y_1), V_{22} = \text{cov}(Y_2)$ and $V_{12} = V_{21} = \text{cov}(Y_1, Y_2)$, with $Y_1 = (X_1, X_2)$, $Y_2 = (X_3, . . . , X_k)$. Then $V_{11.2} = V_{11} - V_{12}V_{22}^{-1}V_{21}$. Consider the individual elements of
-$$V_{11.2} =
+where $V_{11} = \text{cov}(Y_1), V_{22} = \text{cov}(Y_2)$ and
+$V_{12} = V_{21} = \text{cov}(Y_1, Y_2)$, with $Y_1 = (X_1, X_2)$,
+$Y_2 = (X_3, . . . , X_k)$. Then
+$V_{11.2} = V_{11} - V_{12}V_{22}^{-1}V_{21}$. Consider the individual
+elements of $$V_{11.2} =
 \begin{bmatrix}
 v_{11.2} & v_{12.2}\\
 v_{21.2} & v_{22.2}
 \end{bmatrix}$$
 
-We would like to compare, between $v_{12.2}/v_{11.2}$ and $v_{12.2}/v_{22.2}$ and keep whichever is bigger among them and discard the other one. This would give regression coefficient between each pair of random variables eliminating the effect of the other variables. This way one can select the coefficients W matrix which would be non-zero, in the model
+We would like to compare, between $v_{12.2}/v_{11.2}$ and
+$v_{12.2}/v_{22.2}$ and keep whichever is bigger among them and discard
+the other one. This would give regression coefficient between each pair
+of random variables eliminating the effect of the other variables. This
+way one can select the coefficients W matrix which would be non-zero, in
+the model
 
-$$Y = W Y + \epsilon$$
+$$Y = W Y + \varepsilon$$
 
-and would be a way to see directional dependence in the fixed time period. Then we would
-move the window. This would give a way to do path analysis. 
+and would be a way to see directional dependence in the fixed time
+period. Then we would move the window. This would give a way to do path
+analysis.
 
-This process can be compared with other ones, such backward substitution or forward selection, eliminating the multicollinearity effect.
+This process can be compared with other ones, such backward substitution
+or forward selection, eliminating the multicollinearity effect.
 
 ## Implementation
-For each district, we started with only those districts which we found out to be possible regressors for that district according to the comparison rule stated above, and performed backward regression. We have performed the computation of the estimated W matrix for 14 overlapping timespans, viz. 
 
-- Day 41 to Day 100
-- Day 71 to Day 130
-- Day 100 to Day 160
-- $\qquad\qquad\vdots$
-- $\qquad\qquad\vdots$
-- Day 400 to Day 460
-- Day 430 to Day 490
+For each district, we started with only those districts which we found
+out to be possible regressors for that district according to the
+comparison rule stated above, and performed backward regression. We have
+performed the computation of the estimated W matrix for 14 overlapping
+timespans, viz.
+
+-   Day 41 to Day 100
+-   Day 71 to Day 130
+-   Day 100 to Day 160
+-   $\qquad\qquad\vdots$
+-   $\qquad\qquad\vdots$
+-   Day 400 to Day 460
+-   Day 430 to Day 490
 
 <!-- \url{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing} -->
 
-To view the regression matrices along with colour codes arranged based on distance-induced suitable ordering, \href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{\textcolor{blue}{please click here}}.
+To view the regression matrices along with colour codes arranged based
+on distance-induced suitable ordering,
+\href{https://docs.google.com/spreadsheets/d/1hFpKcdnLRwBDkUKUuyvido8DRcwitRgPzPTJd85r9Jc/edit?usp=sharing}{\textcolor{blue}{please click here}}.
 
-Each colour code corresponding to the intersection of a specific row and a specific column represents a different measure of geographical distance between the corresponding districts. The codes can be found in the following diagram:
+Each colour code corresponding to the intersection of a specific row and
+a specific column represents a different measure of geographical
+distance between the corresponding districts. The codes can be found in
+the following diagram:
 
 ```{r pressure, echo=FALSE, fig.cap="Colour codes", out.height='40%', out.width = '40%', fig.align='center'}
 
@@ -80,76 +104,105 @@ path.image <- paste0(path,"colour-codes.png")
 knitr::include_graphics(path = path.image)
 ```
 
-Note that if there are (nearly) $k$ districts in-between two specific districts, the corresponding entry is coloured by the $k$-th colour from the above list.
+Note that if there are (nearly) $k$ districts in-between two specific
+districts, the corresponding entry is coloured by the $k$-th colour from
+the above list.
 
-\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}}
+<!-- \section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the reduced model $Y_t = B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$}}} -->
 
-We estimate $B_1$ , $B_2$ using Vector Auto-regressive(2) model.
+<!-- We estimate $B_1$ , $B_2$ using Vector Auto-regressive(2) model. -->
 
 \section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Estimation of the original spatio-temporal model $ Y_t = WY_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t $}}}
-Method of estimation of W is discussed in section 1. 
+
+Method of estimation of W is discussed in section 1.
 
 <!-- \begin{align*} -->
+
 <!--     \text{cov}(p,q) &= \text{cov}(\alpha q + \varepsilon , \beta p + \eta)\\ -->
+
 <!--     &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,\eta) + \beta\cdot\text{cov}(p,\varepsilon)\\ -->
+
 <!--     &= \alpha\beta\cdot\text{cov}(p,q) + \alpha\cdot\text{cov}(q,q - \beta p) + \beta\cdot\text{cov}(p,p - \alpha q)\\ -->
+
 <!--     &= \alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p) - \alpha\beta\cdot\text{cov}(p,q) -->
+
 <!-- \end{align*} -->
 
 <!-- Therefore, we have: -->
+
 <!-- $$~\text{cov}(p,q) = \dfrac{1}{1+\alpha\beta}\Big[\alpha\cdot\text{var}(q) + \beta\cdot\text{var}(p)\Big] $$ -->
 
 <!-- Also,we calculated  -->
+
 <!-- $$var(q) = \frac{\beta^2 \sigma^2_{\eta,s} + \sigma^2_{\epsilon,s}}{(1-\alpha \beta)^2} $$ -->
+
 <!-- $$var(p) = \frac{\alpha^2 \sigma^2_{\epsilon,s} + \sigma^2_{\eta,s}}{(1-\alpha \beta)^2}$$ -->
 
 <!-- For $s=1,2$; we have 6 equations using the sample estimates of the variances and covariances over the two regimes and there are 6 unknowns : $\alpha, \beta, \sigma^2_{\epsilon,1}, \sigma^2_{\epsilon,2}, \sigma^2_{\eta,1}, \sigma^2_{\eta,2}$ -->
 
+We have been working with the following spatio-temporal model:
+$$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where
+$\varepsilon_t$ is the unknown error vector at time $t$. Note that in
+this model, $W$, $A_1$, and $A_2$ are unknown, time-invariant,
+$d \times d$ matrices, i.e. parameters of the spatio-temporal model.
 
-
-
-
-
-We have been working with the following spatio-temporal model: $$Y_t = W Y_t + A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t$$ where $\varepsilon_t$ is the unknown error vector at time $t$. Note that in this model, $W$, $A_1$, and $A_2$ are unknown, time-invariant, $d \times d$ matrices, i.e. parameters of the spatio-temporal model.
-
-As of now, we shall assume that the error vectors over time are independently and identically distributed. We can perform the following calculation:
+As of now, we shall assume that the error vectors over time are
+independently and identically distributed. We can perform the following
+calculation:
 $$(I - W) Y_t =  A_1 Y_{t-1} + A_2 Y_{t-2} + \varepsilon_t \quad\implies\quad Y_t =  B_1 Y_{t-1} + B_2 Y_{t-2} + \delta_t$$
 
-where $B_1$, $B_2$, $\delta_t$ are obtained by pre-multiplying $A_1$, $A_2$, $\varepsilon_t$ by $(I - W)^{-1}$. The equation on the LHS is the actual model, and the transformed one on the RHS is a reduced model.
+where $B_1$, $B_2$, $\delta_t$ are obtained by pre-multiplying $A_1$,
+$A_2$, $\varepsilon_t$ by $(I - W)^{-1}$. The equation on the LHS is the
+actual model, and the transformed one on the RHS is a reduced model.
 
-Note that the reduced model is nothing but an usual VAR(2) model, with parameters $B_1$ and $B_2$. So, we can simply estimate $B_1$ and $B_2$ using traditional methodologies. Let us denote their estimates by $\hat{B_1}$ and $\hat{B_2}$ respectively.
+Note that the reduced model is nothing but an usual VAR(2) model, with
+parameters $B_1$ and $B_2$. So, we can simply estimate $B_1$ and $B_2$
+using traditional methodologies. Let us denote their estimates by
+$\hat{B_1}$ and $\hat{B_2}$ respectively.
 
 Now, we can estimate the error vectors in the following manner:
 $$(I-W)^{-1} \varepsilon_t ~=~ \delta_t ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})$$
 
+```{=tex}
 \begin{tcolorbox}
 We shall be making an assumption that the covariance matrix of $\varepsilon_t$, say $V$, is a diagonal matrix.
 \end{tcolorbox}
-
-Taking covariance on both sides, we get that:
-\begin{align*}
+```
+Taking covariance on both sides, we get that: \begin{align*}
   &\qquad\quad (I-W)^{-1} \varepsilon_t  ~=~ Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\\
   &\implies~ \text{cov}\big((I-W)^{-1} \varepsilon_t\big)  ~=~ \text{cov}\big(Y_t - (\hat{B_1} Y_{t-1} + \hat{B_2} Y_{t-2})\big)\\
   &\implies~(I-W)^{-1} V_\varepsilon \big((I-W)^{-1}\big)^{T} ~=~ \text{ResCov}_Y\\
   &\implies~ (I-W)^{T} V^{-1}_\varepsilon (I-W) ~=~ \text{ResCov}^{-1}_Y\\
-\end{align*} 
-We shall be writing the last equation as: $M^{T}VM ~=~ \text{C}$ , where we are defining: $M := I-W$, $V := V^{-1}_\varepsilon$, and $C := \text{ResCov}^{-1}_Y$.
+\end{align*} We shall be writing the last equation as:
+$M^{T}VM ~=~ \text{C}$ , where we are defining: $M := I-W$,
+$V := V^{-1}_\varepsilon$, and $C := \text{ResCov}^{-1}_Y$.
 
-This is to be noted that by our assumption, the following structures have been imposed on the matrices that we are supposed to estimate:
+This is to be noted that by our assumption, the following structures
+have been imposed on the matrices that we are supposed to estimate:
 
-- The principal diagonal of $W$ should contain only $0$'s. Naturally, the prinicipal diaginal of $M$ should contain only $1$'s.
+-   The principal diagonal of $W$ should contain only $0$'s. Naturally,
+    the prinicipal diaginal of $M$ should contain only $1$'s.
 
-- $V_\varepsilon$ is, by assumption, a diagonal matrix with strictly positive entries. Thus, the matrix $V$ should be a diagonal matrix, with its diagonal entries equal to the reciprocals of the diagonal entries of $V_\varepsilon$.
+-   $V_\varepsilon$ is, by assumption, a diagonal matrix with strictly
+    positive entries. Thus, the matrix $V$ should be a diagonal matrix,
+    with its diagonal entries equal to the reciprocals of the diagonal
+    entries of $V_\varepsilon$.
 
-- Being a covariance matrix, $\text{ResCov}_Y$ is a known, symmetric, positive definite matrix (That is to be estimated from data). Since the inverse of a positive definite matrix is necessarily positive definite, $C$ is a known, symmetric, positive definite matrix.
+-   Being a covariance matrix, $\text{ResCov}_Y$ is a known, symmetric,
+    positive definite matrix (That is to be estimated from data). Since
+    the inverse of a positive definite matrix is necessarily positive
+    definite, $C$ is a known, symmetric, positive definite matrix.
 
-- All the matrices mentioned above are $d\times d$ matrices. $M$ and $V$ are to be estimated, and $C$ is a known, symmetric, positive definite matrix.
+-   All the matrices mentioned above are $d\times d$ matrices. $M$ and
+    $V$ are to be estimated, and $C$ is a known, symmetric, positive
+    definite matrix.
 
 ```{r, echo=FALSE, fig.cap="Time series plots 1", out.height='60%', out.width = '100%', fig.align='center'}
 
-path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/"
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/high-quality-plots/"
 #path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
 
+# path.image <- paste0(path,"ts-plot-full-time.jpeg")
 path.image <- paste0(path,"ts-plot-full-time.jpeg")
 
 knitr::include_graphics(path = path.image)
@@ -157,7 +210,7 @@ knitr::include_graphics(path = path.image)
 
 ```{r, echo=FALSE, fig.cap="Time series plots 2", out.height='60%', out.width = '100%', fig.align='center'}
 
-path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/"
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/high-quality-plots/"
 #path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
 
 path.image <- paste0(path,"ts-plot-full-time-8-15.jpeg")
@@ -167,7 +220,7 @@ knitr::include_graphics(path = path.image)
 
 ```{r, echo=FALSE, fig.cap="Time series plots 3", out.height='60%', out.width = '100%', fig.align='center'}
 
-path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/"
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/high-quality-plots/"
 #path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
 
 path.image <- paste0(path,"ts-plot-full-time-16-23.jpeg")
@@ -175,18 +228,21 @@ path.image <- paste0(path,"ts-plot-full-time-16-23.jpeg")
 knitr::include_graphics(path = path.image)
 ```
 
+```{=tex}
 \begin{tcolorbox}[colback=red!5, colframe=red!75!black, title=Estimation for two regimes]
 We can partition our time series dataset into multiple regimes, and estimate $M$ and $V$ accordingly. For simplicity, we may consider two regimes. In general, for the $s$-th regime, we shall be denoting the the corresponding matrices by $M$, $V_s$ and $C_s$. Note that $M$ is independent of $s$, because we are assuming that the spatial matrix $W$ remains invariant over time.
 %\tcblower
 %Here, you see the lower part of the box.
 \end{tcolorbox}
-
-In the case of $s = 2$, i.e. two regimes, we are required to solve for $M$, $V_1$ and $V_2$ the following system of equations:
+```
+In the case of $s = 2$, i.e. two regimes, we are required to solve for
+$M$, $V_1$ and $V_2$ the following system of equations:
 $$M^{T} V_1 M = C_1\qquad\text{and}\qquad M^{T} V_2 M = C_2 \label{eq:1} \tag{\ding{97}}$$
 where the structures of all the matrices have been discussed earlier.
 
 The task of estimation can be performed in the following way:
 
+```{=tex}
 \begin{itemize}
   \item We can start off by writing down a spectral decomposition of $C_1$, let's say $C_1 = D^{T}_1 \Sigma_1 D_1$ where $\Sigma_1$ is a diagonal matrix containing the eigenvalues of $C_1$, say $\lambda_1$, $\lambda_2$, $\cdots$, $\lambda_d$, and the rows of $D_1$ contain the corresponding eigenvectors.
 
@@ -196,9 +252,21 @@ The task of estimation can be performed in the following way:
   $$M^{T} V_1 M ~=~ D_1^T ~\Sigma^{\frac{1}{2}}_1~ V_1^{-\frac{1}{2}}~ V_1~ V_1^{-\frac{1}{2}} ~\Sigma^{\frac{1}{2}}_1 ~D_1 ~=~ D_1^T ~\Sigma_1 ~D_1 ~=~ C_1$$
   \item Define $V_2 := \big(M^{-1})^T C_2 M^{-1}$.
 \end{itemize}
+```
+This is to be noted that our chosen $V_1$, $V_2$ and $M$ satisfy all the
+desired properties mentioned earlier. So, our chosen $W$, $V_1$ and
+$V_2$ are solutions to the system of equations \eqref{eq:1}.
 
-This is to be noted that our chosen $V_1$, $V_2$ and $M$ satisfy all the desired properties mentioned earlier. So, our chosen $W$, $V_1$ and $V_2$ are solutions to the system of equations \eqref{eq:1}.
+\section{\textbf{\textcolor{DeepBlue}{\ding{99} Prediction}
 
+We shifted the data by 1, and performed a log-transformation of the
+data.
 
+VAR(2) model was fitted with the data of first 400 days, and predicted
+next 154 days using the model.
 
+We calculated prediction errors of each district using the formula:
 
+$$
+\frac{1}{154}\sum_{i=441}^{554}\left|\frac{\text{predicted}_i-\text{actual}_i}{\text{actual}_i}\right|
+$$
