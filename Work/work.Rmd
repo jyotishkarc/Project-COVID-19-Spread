@@ -257,7 +257,7 @@ This is to be noted that our chosen $V_1$, $V_2$ and $M$ satisfy all the
 desired properties mentioned earlier. So, our chosen $W$, $V_1$ and
 $V_2$ are solutions to the system of equations \eqref{eq:1}.
 
-\\section{\\textbf{\textcolor{DeepBlue}{\ding{99} Prediction}
+\\\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Prediction }}}
 
 We shifted the data by 1, and performed a log-transformation of the
 data.
@@ -270,3 +270,33 @@ We calculated prediction errors of each district using the formula:
 $$
 \frac{1}{154}\sum_{i=441}^{554}\left|\frac{\text{predicted}_i-\text{actual}_i}{\text{actual}_i}\right|
 $$
+
+```{r, echo=FALSE, fig.cap="Time series plots 3", out.height='40%', out.width = '100%', fig.align='center'}
+
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/predictions/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"forecast-01-08.jpeg")
+
+knitr::include_graphics(path = path.image)
+```
+
+```{r, echo=FALSE, fig.cap="Time series plots 3", out.height='40%', out.width = '100%', fig.align='center'}
+
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/predictions/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"forecast-9-16.jpeg")
+
+knitr::include_graphics(path = path.image)
+```
+
+```{r, echo=FALSE, fig.cap="Time series plots 3", out.height='40%', out.width = '100%', fig.align='center'}
+
+path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Plots/predictions/"
+#path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Work/"
+
+path.image <- paste0(path,"forecast-17-23.jpeg")
+
+knitr::include_graphics(path = path.image)
+```
