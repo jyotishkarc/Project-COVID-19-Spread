@@ -1,5 +1,9 @@
 library(dplyr)
 library(expm)
+library(timetk)
+library(vars)
+library(ggplot2)
+library(forecast)
 
 path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
 path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
@@ -98,7 +102,9 @@ as_tibble(temp.ts) %>%
                     .legend_show = FALSE,
                     .title = "")
 
-x <- VAR(districts.cleaned.arranged, p = 2, type = "const")
+last.train <- 400
+
+x <- VAR(districts.cleaned.arranged[1:last.train, ], p = 2, type = "const")
 S <- x %>% summary()
 
 B_1 <- B_2 <- matrix(0, nrow = L, ncol = L)
@@ -118,29 +124,55 @@ for(i in 1:L){
 colnames(B_1) <- colnames(B_2) <- 
    rownames(B_1) <- rownames(B_2) <- arranged.dist
 
-predicted <- rbind(districts.cleaned.arranged[1:400, ],
-                   matrix(0, nrow = (N-400), ncol = 23))
-const=c()
-for(i in 1:23)
-   const[i]=x[["varresult"]][[arranged.dist[i]]][["coefficients"]][["const"]]
-for(day in 401:N){
-   predicted[day, ] <- B_1 %*% predicted[(day - 1), ] +
-                        B_2 %*% predicted[(day - 2), ] +
-                        const
-                        
+predicted <- rbind(districts.cleaned.arranged[1:last.train, ],
+                   matrix(0, nrow = (N-last.train), ncol = 23))
+# const=c()
+# for(i in 1:23)
+#    const[i]=x[["varresult"]][[arranged.dist[i]]][["coefficients"]][["const"]]
+# for(day in (last.train + 1):N){
+#    predicted[day, ] <- B_1 %*% predicted[(day - 1), ] +
+#                         B_2 %*% predicted[(day - 2), ] +
+#                         const
+#                         
+# }
+y=predict(x, n.ahead = 154)
+for(day in (last.train + 1):N){
+   
+   for(j in 1:23)
+      predicted[day,j ] = y$fcst[[j]][day-last.train,1]
+   
 }
-
 p=list()
 for(i in 1:23){
    p[[i]] = ggplot() + 
       geom_line(data = as.data.frame(cbind(x1 = 1:554,
                                            y1 = districts.cleaned.arranged[,i])),
                 aes(x = x1, y = y1), color = "blue") +
-      geom_line(data = as.data.frame(cbind(x2 = 401:554,
-                                           y2 = predicted[401:554,i])), 
+      geom_line(data = as.data.frame(cbind(x2 = (last.train +1):554,
+                                          y2 = predicted[(last.train +1):554,i])), 
                 aes(x = x2, y = y2), color = "red") +
-      xlab('Day') +
-      ylab('Infection') +
-      ggtitle(arranged.dist[i])
+      xlab('Day') + ylab('Infection') +
+      ggtitle(arranged.dist[i]) + theme(
+         plot.title = element_text(size=12, face="bold", hjust = 0.5),
+      )
 } 
+
+
+pred1 <- ggarrange(p[[1]], p[[2]], p[[3]], p[[4]],
+          p[[5]], p[[6]], p[[7]], p[[8]], 
+          labels = NULL,
+          ncol = 2, nrow = 4)
+
+
+pred2 <- ggarrange(p[[9]], p[[10]], p[[11]], p[[12]],
+                p[[13]], p[[14]], p[[15]], p[[16]], 
+                labels = NULL,
+                ncol = 2, nrow = 4)
+
+pred3 <- ggarrange(p[[17]], p[[18]], p[[19]], p[[20]],
+                   p[[21]], p[[22]], p[[23]], 
+                   labels = NULL,
+                   ncol = 2, nrow = 4)
+
+
 
