@@ -35,7 +35,7 @@ districts.cleaned <- apply(M.v1, 2, function(vec){
 districts.cleaned <- as.data.frame(districts.cleaned)
 
 uni.dist <- uni.dist %>% gsub(" ", ".", .)
-colnames(districts.cleaned)=uni.dist
+colnames(districts.cleaned) <- uni.dist
 arranged.dist=c("Alipurduar","Cooch.Behar","Jalpaiguri",
                 "Kalimpong","Darjeeling","Uttar.Dinajpur",
                 "Dakshin.Dinajpur","Malda","Murshidabad",
@@ -44,9 +44,12 @@ arranged.dist=c("Alipurduar","Cooch.Behar","Jalpaiguri",
                 "North.24.Parganas","Purulia","Jhargram",
                 "Paschim.Medinipur","Howrah","Kolkata",
                 "South.24.Parganas","Purba.Medinipur")
-ord=c()
-for(i in 1:23)
-   ord[i]=match(arranged.dist[i],uni.dist)
+# ord=c()
+# for(i in 1:23)
+#    ord[i]=match(arranged.dist[i],uni.dist)
+
+ord <- match(arranged.dist, uni.dist)
+
 lst=list()
 for(i in 1:23)
    lst[[i]]=districts.cleaned[,ord[i]]
@@ -70,8 +73,7 @@ colnames(districts.cleaned.arranged)=arranged.dist
 temp2 <- as.vector(as.matrix(districts.cleaned))
 
 temp.ts <- data.frame(day = rep(c(1:541), times = 23),
-                     district = rep(arranged.districts,
-                                    each = 541),
+                     district = rep(arranged.districts, each = 541),
                      data = temp2)
 
 as_tibble(temp.ts) %>% 
@@ -106,4 +108,11 @@ as_tibble(temp.ts) %>%
                     # .color_var = district,
                     .legend_show = FALSE,
                     .title = "")
-                    
+
+# for(i in 1:23){
+#    p = ggplot() + 
+#       geom_line(data = as.data.frame(cbind(x1 = 1:554,y1 = districts.cleaned.arranged[,i])), aes(x = x1, y = y1), color = "blue") +
+#       geom_line(data = as.data.frame(cbind(x2 = 401:554,y2 = predicted)), aes(x = x2, y = y2), color = "blue") +
+#       xlab('Dates') +
+#       ylab('percent.change')
+# }   
