@@ -257,7 +257,9 @@ This is to be noted that our chosen $V_1$, $V_2$ and $M$ satisfy all the
 desired properties mentioned earlier. So, our chosen $W$, $V_1$ and
 $V_2$ are solutions to the system of equations \eqref{eq:1}.
 
-\\\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Prediction }}}
+\\
+
+\section{\textbf{\textcolor{DeepBlue}{\ding{99} ~Prediction }}}
 
 We shifted the data by 1, and performed a log-transformation of the
 data.
