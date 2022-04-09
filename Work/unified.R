@@ -78,7 +78,7 @@ predicted <- rbind(districts.cleaned.arranged[1:last.train, ],
 #                         const
 #                         
 # }
-y=predict(x, n.ahead = 554 - last.train)
+y <- predict(x, n.ahead = 554 - last.train)
 for(day in (last.train + 1):N){
    
    for(j in 1:23)
@@ -91,8 +91,8 @@ for(i in 1:23){
       geom_line(data = as.data.frame(cbind(x1 = 1:554,
                                            y1 = districts.cleaned.arranged[,i])),
                 aes(x = x1, y = y1), color = "blue") +
-      geom_line(data = as.data.frame(cbind(x2 = (last.train +1):554,
-                                          y2 = predicted[(last.train +1):554,i])), 
+      geom_line(data = as.data.frame(cbind(x2 = (last.train+1):554,
+                                          y2 = predicted[(last.train+1):554,i])), 
                 aes(x = x2, y = y2), color = "red") +
       xlab('Day') + ylab('Infection') +
       ggtitle(arranged.dist[i]) + theme(
