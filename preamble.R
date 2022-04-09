@@ -1,12 +1,9 @@
 library(dplyr)
 
-path <- "D:/My Documents/R/R Codes/Project on Spread of COVID-19/Datasets/"
-# path <- "/Users/aytijhyasaha/Desktop/projects/spread of covid/Project-COVID-19-Spread/Datasets/"
+path <- paste0(getwd(),"/Datasets/")
 
 districts.df <- read.csv(paste0(path,"districts.csv")) %>% as.data.frame()
-
 districts.conf <- districts.df %>% filter(State == "West Bengal")
-
 uni.dist <- unique(districts.conf$District)
 
 uni <- districts.conf[districts.conf[,3] != "Unknown" ||
@@ -39,6 +36,7 @@ districts.cleaned <- apply(M, 2, function(vec){
 
 uni.dist <- uni.dist %>% gsub(" ", ".", .)
 colnames(districts.cleaned) <- uni.dist
+
 arranged.dist <- c("Alipurduar","Cooch.Behar","Jalpaiguri",
                    "Kalimpong","Darjeeling","Uttar.Dinajpur",
                    "Dakshin.Dinajpur","Malda","Murshidabad",
