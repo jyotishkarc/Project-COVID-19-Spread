@@ -136,7 +136,7 @@ predicted <- rbind(districts.cleaned.arranged[1:last.train, ],
 #                         const
 #                         
 # }
-y=predict(x, n.ahead = 154)
+y=predict(x, n.ahead = 554 - last.train)
 for(day in (last.train + 1):N){
    
    for(j in 1:23)
