@@ -6,7 +6,8 @@ library(ggplot2)
 library(forecast)
 library(ggpubr)
 
-## source('~/R/R Codes/Project on Spread of COVID-19/preamble.R')
+# path.preamble <- paste0(getwd(),"/preamble.R")
+# source(path.preamble)
 
 ##### Usual Time Series Plot
 if(FALSE){
