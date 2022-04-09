@@ -56,9 +56,9 @@ for(i in 1:23){
 districts.cleaned.arranged <- do.call(cbind,lst)
 colnames(districts.cleaned.arranged) <- arranged.dist
 
-temp2 <- as.vector(as.matrix(districts.cleaned.arranged))
+temp3 <- as.vector(as.matrix(districts.cleaned.arranged))
 
 temp.ts <- data.frame(day = rep(c(1:N), times = 23),
                       district = rep(arranged.districts, each = N),
-                      data = temp2)
+                      data = temp3)
 

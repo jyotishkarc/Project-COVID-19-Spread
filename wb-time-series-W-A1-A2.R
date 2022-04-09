@@ -4,7 +4,7 @@ library(expm)
 # path.preamble <- paste0(getwd(),"/preamble.R")
 # source(path.preamble)
 
-E2 <- eigen(RVY2.inv)   # C2 = RVY2.inv
+E2 <- eigen(RVY2.inv)
 E2.val <- E2$values
 E2.vec <- E2$vectors %>% t()
 
@@ -19,8 +19,6 @@ M[target, ] <- -M[target, ]
 inv.M <- solve(M)
 
 V1 <- t(inv.M) %*% RVY1.inv %*% inv.M
-
-
    
 
 
