@@ -12,37 +12,37 @@ library(ggpubr)
 ##### Usual Time Series Plot
 if(FALSE){
    as_tibble(temp.ts) %>% 
-      filter(district == arranged.districts[1:8]) %>% 
+      filter(district == arranged.districts[1:15]) %>% 
       plot_time_series(day, data,
                        .interactive = FALSE,
                        .facet_vars = district,
-                       .facet_ncol = 2,
+                       .facet_ncol = 3,
                        .facet_scales = "fixed",
                        # .color_var = district,
                        .legend_show = FALSE,
                        .title = "")
    
    as_tibble(temp.ts) %>% 
-      filter(district == arranged.districts[9:16]) %>% 
+      filter(district == arranged.districts[16:23]) %>% 
       plot_time_series(day, data,
                        .interactive = FALSE,
                        .facet_vars = district,
-                       .facet_ncol = 2,
+                       .facet_ncol = 3,
                        .facet_scales = "fixed",
                        # .color_var = district,
                        .legend_show = FALSE,
                        .title = "")
    
-   as_tibble(temp.ts) %>% 
-      filter(district == arranged.districts[17:23]) %>% 
-      plot_time_series(day, data,
-                       .interactive = FALSE,
-                       .facet_vars = district,
-                       .facet_ncol = 2,
-                       .facet_scales = "fixed",
-                       # .color_var = district,
-                       .legend_show = FALSE,
-                       .title = "")
+   # as_tibble(temp.ts) %>% 
+   #    filter(district == arranged.districts[17:23]) %>% 
+   #    plot_time_series(day, data,
+   #                     .interactive = FALSE,
+   #                     .facet_vars = district,
+   #                     .facet_ncol = 2,
+   #                     .facet_scales = "fixed",
+   #                     # .color_var = district,
+   #                     .legend_show = FALSE,
+   #                     .title = "")
 }
 ############################
 
