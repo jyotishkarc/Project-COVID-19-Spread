@@ -10,7 +10,7 @@ library(ggpubr)
 # source(path.preamble)
 
 ##### Usual Time Series Plot
-if(FALSE){
+if(TRUE){
    as_tibble(temp.ts) %>% 
       filter(district == arranged.districts[1:15]) %>% 
       plot_time_series(day, data,
